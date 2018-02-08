@@ -1,0 +1,45 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Message Not Found,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - Electrical Engr Intended,Sophomore,,04/26/2010 7:29:31PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,04/29/2010 10:05:35AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,,05/25/2010 9:56:44AM
+,123,some student,Graded,0,Undergraduate - Mathematics-BS,Junior,Withdrawn,05/25/2010 11:50:03AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Freshman,,05/28/2010 12:21:14PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,06/09/2010 10:43:34AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,06/15/2010 8:46:16PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,06/22/2010 7:03:24PM
+,123,some student,Graded,3,Undergraduate - Soft Engr - University College,Freshman,,06/25/2010 4:19:33PM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Sophomore,Withdrawn,06/29/2010 10:26:02AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,,07/14/2010 7:24:49AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,07/19/2010 1:25:42PM
+,123,some student,Graded,0,Undergraduate - Communication Tech Intended,Sophomore,Withdrawn,07/21/2010 2:56:52AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,,07/22/2010 1:00:47PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,07/26/2010 1:48:03PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,07/28/2010 12:24:19PM
+,123,some student,Graded,3,Undergraduate - Elec Engr - University College,Freshman,,08/02/2010 9:32:26AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/03/2010 4:15:59PM
+,123,some student,Graded,3,Undergraduate - Undeclared Intended,Sophomore,,08/03/2010 7:52:26PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/04/2010 12:54:11PM
+,123,some student,Graded,3,Undergraduate - Soft Engr - University College,Freshman,,08/05/2010 2:07:21PM
+,123,some student,Graded,0,Undergraduate - Computer Engineering Intended,Junior,Withdrawn,08/05/2010 6:50:08PM
+,123,some student,Graded,3,Undergraduate - Biochemistry Intended,Sophomore,,08/09/2010 9:05:00PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/11/2010 7:12:02AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,,08/11/2010 5:07:16PM
+,123,some student,Graded,3,Undergraduate - Mathematics Intended,Senior,,08/12/2010 3:22:25PM
+,123,some student,Graded,3,Second Baccalaureate - Software Engineering Intended,Fifth Year,,08/13/2010 2:29:39PM
+,123,some student,Graded,0,Undergraduate - Undeclared Intended,Sophomore,Withdrawn,08/16/2010 4:16:35PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Senior,Withdrawn,08/17/2010 2:42:14PM
+,123,some student,Graded,3,Second Baccalaureate - Chemistry-BS,Fifth Year,,08/18/2010 2:59:03PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,08/18/2010 10:43:16PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Senior,,08/19/2010 11:57:44AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,,08/19/2010 4:07:40PM
+,123,some student,Graded,3,Undergraduate - Mathematics-BS/Software Engineering Intended,Junior,,08/20/2010 9:46:16AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,08/20/2010 11:58:27PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/22/2010 11:11:14AM
+,123,some student,Graded,3,Undergraduate - Electrical Engr Intended,Junior,,08/22/2010 4:13:44PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/23/2010 2:28:12PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/23/2010 3:40:37PM
+,123,some student,Graded,0,Undergraduate - Computer Engineering Intended,Freshman,Withdrawn,08/24/2010 1:15:52PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,08/24/2010 2:20:54PM
+,123,some student,Graded,3,Undergrad Non-Degree Seeking - Software Engineering Intended,Freshman,,08/24/2010 3:35:32PM
+,123,some student,Graded,0,Undergraduate - German-BA/Undeclared Intended,Sophomore,Withdrawn,08/24/2010 3:44:03PM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Sophomore,Withdrawn,08/26/2010 11:22:59AM

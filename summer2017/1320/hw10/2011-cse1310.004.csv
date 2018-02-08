@@ -1,0 +1,60 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Message Not Found,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - Biology Intended,Sophomore,,08/07/2011 11:03:13PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,08/08/2011 11:39:02AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Freshman,Withdrawn,08/08/2011 12:04:07PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/08/2011 3:00:27PM
+,123,some student,Graded,3,Second Baccalaureate - Undeclared Intended,Fifth Year,,08/08/2011 4:37:07PM
+,123,some student,Graded,0,Undergraduate - Undeclared Intended,Sophomore,Withdrawn,08/08/2011 5:57:27PM
+,123,some student,Graded,3,Undergraduate - Undeclared Business Intended,Junior,,08/08/2011 6:03:58PM
+,123,some student,Graded,3,Undergraduate - Broadcast Comm Intended,Sophomore,,08/09/2011 11:34:38AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,,08/09/2011 2:57:42PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,,08/09/2011 2:58:11PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/09/2011 4:23:45PM
+,123,some student,Graded,0,Undergraduate - Biology Intended/Business Administration Minor,Sophomore,Withdrawn,08/09/2011 7:12:17PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,08/09/2011 7:28:58PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/10/2011 8:24:59AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/10/2011 1:02:24PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/10/2011 1:17:39PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/10/2011 1:32:23PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Junior,,08/10/2011 1:48:43PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/10/2011 2:43:12PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/10/2011 3:35:17PM
+,123,some student,Graded,3,Undergraduate - English-BA,Senior,,08/10/2011 4:40:11PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/10/2011 5:33:38PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/11/2011 5:29:25AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/11/2011 11:05:54AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/11/2011 1:41:03PM
+,123,some student,Graded,0,Undergraduate - CSE - University College,Freshman,Withdrawn,08/11/2011 4:06:33PM
+,123,some student,Graded,0,Undergraduate - Art-BFA,Junior,Withdrawn,08/11/2011 8:56:40PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/12/2011 9:02:32AM
+,123,some student,Graded,0,Undergraduate - UBUS - University College,Freshman,Withdrawn,08/12/2011 11:34:51AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Junior,Withdrawn,08/12/2011 1:26:57PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/12/2011 2:06:35PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,,08/12/2011 4:49:46PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/15/2011 12:36:57PM
+,123,some student,Graded,0,Undergraduate - UBUS - University College,Freshman,Withdrawn,08/15/2011 2:08:13PM
+,123,some student,Graded,3,Undergraduate - Math - University College,Freshman,,08/15/2011 2:27:42PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,08/16/2011 4:52:20PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/16/2011 4:56:35PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Freshman,,08/16/2011 4:58:09PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,08/16/2011 5:55:16PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/16/2011 10:16:33PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,08/17/2011 12:12:35PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/17/2011 3:30:11PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/17/2011 4:12:31PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/17/2011 9:42:20PM
+,123,some student,Graded,0,Undergraduate - Chemistry Intended,Junior,Withdrawn,08/18/2011 12:04:02AM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,,08/18/2011 8:26:12AM
+,123,some student,Graded,3,Undergraduate - Elec Engr - University College,Freshman,,08/18/2011 10:40:26AM
+,123,some student,Graded,0,Undergraduate - University Studies Intended,Junior,Withdrawn,08/18/2011 1:12:16PM
+,123,some student,Graded,0,Undergraduate - BIOL-BS TO BE-MS,Senior,Withdrawn,08/19/2011 11:24:38PM
+,123,some student,Graded,3,Undergraduate - BIOL-BS TO BE-MS,Senior,,08/22/2011 10:00:17AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/23/2011 1:32:37PM
+,123,some student,Graded,3,Undergraduate - Kine - University College,Freshman,,08/23/2011 3:35:42PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/24/2011 2:51:24PM
+,123,some student,Graded,3,Undergraduate - UND - University College,Freshman,,08/25/2011 9:49:26AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Sophomore,Withdrawn,08/26/2011 2:16:09PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,08/26/2011 2:20:56PM
+,123,some student,Graded,0,Undergraduate - Computer Engineering Intended,Junior,Withdrawn,08/30/2011 3:03:35PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,08/31/2011 11:32:52AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/31/2011 4:27:05PM

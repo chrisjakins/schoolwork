@@ -1,0 +1,34 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Last Enrollment DateTime
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Sophomore,08/12/2014 9:11:51AM
+,123,some student,Graded,0,Undergraduate - CSE - University College,Freshman,08/12/2014 9:47:45AM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Junior,08/12/2014 10:58:24AM
+,123,some student,Graded,0,Second Baccalaureate - Computer Engineering Intended,Fifth Year,08/12/2014 11:31:27AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended/Mathematics-Minor,Junior,08/12/2014 1:41:02PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Junior,08/12/2014 3:00:23PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/12/2014 4:38:12PM
+,123,some student,Graded,0,Undergraduate - Civil Engineering Intended,Junior,08/12/2014 9:46:10PM
+,123,some student,Graded,0,Second Baccalaureate - Nursing-BSN,Fifth Year,08/12/2014 10:19:31PM
+,123,some student,Graded,3,Undergraduate - Soft Engr - University College,Freshman,08/13/2014 9:07:46AM
+,123,some student,Graded,0,Undergraduate - Civil Engr-University College,Freshman,08/13/2014 9:07:47AM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,08/13/2014 9:07:47AM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,08/13/2014 9:07:47AM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,08/13/2014 9:07:48AM
+,123,some student,Graded,0,Undergraduate - Soft Engr - University College,Freshman,08/13/2014 9:23:01AM
+,123,some student,Graded,0,Undergraduate - UND - University College,Sophomore,08/13/2014 9:23:02AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,08/13/2014 11:00:31AM
+,123,some student,Graded,0,Undergraduate - Computer Engineering Intended,Sophomore,08/13/2014 11:04:11AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,08/13/2014 2:37:12PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,08/13/2014 2:38:12PM
+,123,some student,Graded,0,Undergraduate - CS - University College,Freshman,08/13/2014 2:46:26PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Junior,08/14/2014 10:19:23AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Freshman,08/14/2014 12:29:34PM
+,123,some student,Graded,0,Undergraduate - University Studies - BS,Junior,08/14/2014 1:02:46PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/14/2014 2:37:52PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,08/14/2014 3:58:17PM
+,123,some student,Graded,0,Undergraduate - CS - University College,Freshman,08/14/2014 4:55:57PM
+,123,some student,Graded,3,Undergraduate - Soft Engr - University College,Freshman,08/14/2014 4:55:58PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Freshman,08/15/2014 11:09:32AM
+,123,some student,Graded,0,Undergraduate - Mechanical Engr Intended,Sophomore,08/15/2014 12:32:33PM
+,123,some student,Graded,0,Undergraduate - CSE - University College,Freshman,08/19/2014 11:17:41AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,08/21/2014 1:53:40PM
+,123,some student,Graded,0,Undergraduate - Biology-BS,Sophomore,08/22/2014 11:42:14AM

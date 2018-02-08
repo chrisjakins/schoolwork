@@ -1,0 +1,48 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - Biomedical Engr Intended/Chemistry Minor,Sophomore,04/01/2013 11:54:12AM
+,123,some student,Graded,3,Undergraduate - Biology Intended,Sophomore,04/23/2013 7:54:29AM
+,123,some student,Graded,3,Undergraduate - Computer Science Minor/Mechanical Engr Intended,Sophomore,04/25/2013 5:04:18PM
+,123,some student,Graded,3,Undergraduate - Architecture Intended/English Creative Writing Minor,Sophomore,04/25/2013 5:09:52PM
+,123,some student,Graded,3,Undergraduate - Aerospace Engineering Intended,Freshman,05/09/2013 11:13:18AM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Junior,05/22/2013 2:34:12PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,05/29/2013 8:55:30PM
+,123,some student,Graded,0,Undergraduate - Biology Intended/French Minor,Sophomore,05/31/2013 3:46:36PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,05/31/2013 5:48:14PM
+,123,some student,Graded,3,Undergraduate - Communication Tech Intended,Junior,06/05/2013 4:17:03PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Senior,06/06/2013 10:57:01PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,06/14/2013 3:37:08PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,06/14/2013 4:14:00PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Sophomore,06/18/2013 3:10:36PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,06/18/2013 3:38:54PM
+,123,some student,Graded,3,Undergraduate - Engineering Intended,Sophomore,06/20/2013 6:21:39PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,06/21/2013 2:29:05PM
+,123,some student,Graded,0,Undergraduate - CRCJ - University College,Freshman,06/21/2013 3:44:18PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Freshman,06/25/2013 3:35:49PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,06/25/2013 4:15:45PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Junior,06/25/2013 5:07:55PM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Sophomore,06/26/2013 6:01:47PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,06/28/2013 2:43:03PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,06/28/2013 5:11:16PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,06/30/2013 4:21:54PM
+,123,some student,Graded,0,Undergraduate - UBUS - University College,Freshman,07/01/2013 1:41:40PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,07/30/2013 1:02:02PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,07/31/2013 2:34:36PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/05/2013 4:07:53PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Junior,08/05/2013 4:08:55PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,08/05/2013 8:30:40PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/06/2013 10:12:48AM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Junior,08/06/2013 12:17:09PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,08/06/2013 2:53:58PM
+,123,some student,Graded,0,Undergraduate - CSE - University College,Freshman,08/06/2013 3:15:39PM
+,123,some student,Graded,3,Undergraduate - Undeclared Intended,Freshman,08/07/2013 9:35:06AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/07/2013 10:44:08PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/08/2013 9:13:40AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,08/13/2013 8:26:25AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,08/13/2013 8:42:33AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,08/14/2013 3:13:18PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,08/20/2013 9:11:24AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Sophomore,08/20/2013 9:13:34AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,08/20/2013 10:28:13AM
+,123,some student,Graded,3,Undergraduate - Biology Intended,Senior,08/20/2013 1:01:27PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,08/21/2013 2:04:45PM
+,123,some student,Graded,3,Undergrad Non-Degree Seeking - UND - University College,Freshman,08/23/2013 11:12:15AM

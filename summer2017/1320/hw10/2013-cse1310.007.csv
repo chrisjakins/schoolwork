@@ -1,0 +1,32 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Last Enrollment DateTime
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Junior,08/12/2013 11:13:36AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,08/12/2013 11:33:58AM
+,123,some student,Graded,3,Second Baccalaureate - Software Engineering Intended,Fifth Year,08/12/2013 2:55:40PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Sophomore,08/12/2013 3:37:16PM
+,123,some student,Graded,0,Undergraduate - Criminal Justice BA Intended,Freshman,08/12/2013 3:40:51PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,08/12/2013 5:13:50PM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Sophomore,08/12/2013 5:49:13PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/12/2013 6:45:26PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Sophomore,08/13/2013 12:03:44AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Freshman,08/13/2013 12:51:28PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Junior,08/13/2013 8:21:13PM
+,123,some student,Graded,0,Undergraduate - Physics Intended,Sophomore,08/14/2013 10:25:57AM
+,123,some student,Graded,0,Undergraduate - Undeclared Engr Intended,Junior,08/14/2013 11:13:10AM
+,123,some student,Graded,0,Undergraduate - UBUS - University College,Freshman,08/14/2013 12:18:40PM
+,123,some student,Graded,0,Undergraduate - Undeclared Intended,Freshman,08/14/2013 2:13:00PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Freshman,08/14/2013 2:36:02PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Sophomore,08/15/2013 3:00:12PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/15/2013 3:28:34PM
+,123,some student,Graded,3,Undergraduate - Aerospace Engineering Minor/Undeclared Engr Intended,Junior,08/15/2013 8:37:14PM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Junior,08/16/2013 7:44:01AM
+,123,some student,Graded,3,Undergraduate - UND - University College,Freshman,08/16/2013 11:51:36AM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Junior,08/16/2013 2:55:11PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,08/16/2013 3:37:06PM
+,123,some student,Graded,0,Undergraduate - Art - University College,Freshman,08/16/2013 3:42:36PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,08/16/2013 3:48:50PM
+,123,some student,Graded,0,Undergraduate - CRCJ - University College,Freshman,08/16/2013 5:01:27PM
+,123,some student,Graded,3,Undergraduate - English Teaching,Sophomore,08/18/2013 4:24:31PM
+,123,some student,Graded,0,Undergraduate - CS - University College,Freshman,08/21/2013 2:34:49PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,08/22/2013 1:33:41PM
+,123,some student,Graded,3,Masters - Math-MS Thesis Sub Gen Stats,Graduate,09/18/2013 2:40:53PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Junior,10/15/2013 4:21:31PM

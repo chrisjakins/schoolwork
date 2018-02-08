@@ -1,0 +1,64 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Message Not Found,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,04/08/2010 1:36:55PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,04/12/2010 1:43:56AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,04/13/2010 8:05:49PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,04/15/2010 5:18:44PM
+,123,some student,Graded,3,Undergraduate - Mathematics-Minor/Software Engineering Intended,Junior,,04/16/2010 3:33:26PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,,04/17/2010 10:35:37PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,04/19/2010 11:21:33AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,04/19/2010 12:36:21PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,04/20/2010 3:24:57PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,,04/21/2010 3:25:01PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,04/29/2010 3:37:48PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Freshman,,04/29/2010 5:43:47PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,05/03/2010 1:48:53PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,05/03/2010 6:38:05PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,05/04/2010 1:14:31PM
+,123,some student,Graded,0,Undergraduate - Computer Engineering Intended,Sophomore,Withdrawn,05/04/2010 4:33:21PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,05/05/2010 9:03:17PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,05/24/2010 4:56:04PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,06/01/2010 10:39:42AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,06/02/2010 9:29:46PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,06/04/2010 12:18:56PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,,06/09/2010 1:50:39PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,,06/09/2010 9:40:41PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,06/10/2010 5:20:12PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,06/17/2010 9:47:27PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,07/03/2010 6:48:33PM
+,123,some student,Graded,3,Undergraduate - Philosophy Intended,Senior,,07/07/2010 11:50:27AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,07/20/2010 10:01:26AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Freshman,,07/21/2010 3:57:49PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,07/27/2010 4:36:49PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,07/29/2010 8:21:59AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,08/03/2010 2:38:43PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/04/2010 8:43:54PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,08/05/2010 4:15:35PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/05/2010 9:43:15PM
+,123,some student,Graded,3,Second Baccalaureate - Computer Science Intended,Fifth Year,,08/06/2010 3:56:58PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/09/2010 5:29:27PM
+,123,some student,Graded,0,Undergraduate - University Studies Intended,Senior,Withdrawn,08/10/2010 11:09:33AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,08/10/2010 8:20:15PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,08/11/2010 3:02:49PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/12/2010 6:21:29PM
+,123,some student,Graded,3,Second Baccalaureate - Software Engineering Intended,Fifth Year,,08/13/2010 2:30:19PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/16/2010 11:01:09AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/16/2010 12:40:19PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,08/16/2010 2:30:07PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/18/2010 12:53:19PM
+,123,some student,Graded,0,Second Baccalaureate - Chemistry-BS,Fifth Year,Withdrawn,08/18/2010 4:22:43PM
+,123,some student,Graded,3,Masters - Computer Sci-MS Non Thesis,Graduate,,08/20/2010 11:22:30AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/20/2010 1:42:40PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/23/2010 11:29:03AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/23/2010 11:34:49AM
+,123,some student,Graded,3,Masters - Computer Sci-MCS Non Thesis/Computer Sci-MS Non Thesis,Graduate,,08/23/2010 12:42:55PM
+,123,some student,Graded,3,Undergraduate - Electrical Engr Intended,Sophomore,,08/24/2010 9:43:37AM
+,123,some student,Graded,3,Masters - Computer Engr-MS Thesis,Graduate,,08/24/2010 11:38:43AM
+,123,some student,Graded,3,Masters - Computer Engineering-MS NonTh,Graduate,,08/24/2010 11:46:45AM
+,123,some student,Graded,3,Masters - Computer Sci-MS Non Thesis,Graduate,,08/24/2010 12:23:29PM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Sophomore,Withdrawn,08/24/2010 4:57:40PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Senior,,08/25/2010 12:02:58PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/25/2010 12:38:53PM
+,123,some student,Graded,3,Second Baccalaureate - Biology Intended,Fifth Year,,08/27/2010 9:12:10AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,08/30/2010 3:07:46PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,08/31/2010 12:29:58PM
+,123,some student,Graded,3,Masters - Computer Sci-MS Non Thesis,Graduate,,09/13/2010 4:00:31PM

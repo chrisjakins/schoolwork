@@ -1,0 +1,46 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - Mechanical Engr Intended,Sophomore,04/29/2014 3:04:50PM
+,123,some student,Graded,3,Undergraduate - Physics - University College,Freshman,04/29/2014 10:10:56PM
+,123,some student,Graded,3,Undergraduate - Engr - University College,Freshman,05/12/2014 4:48:53PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,05/12/2014 4:53:28PM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Sophomore,05/14/2014 9:01:29PM
+,123,some student,Graded,3,Undergraduate - University Studies - BS,Junior,05/15/2014 4:49:49PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,05/16/2014 2:51:05PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,05/17/2014 1:42:52PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,05/19/2014 3:00:52PM
+,123,some student,Graded,0,Undergraduate - CSE - University College,Freshman,05/19/2014 4:31:36PM
+,123,some student,Graded,0,Undergraduate - Civil Engineering Intended,Sophomore,05/20/2014 3:11:31PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,05/20/2014 4:52:21PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,05/20/2014 5:39:16PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,05/21/2014 12:29:58AM
+,123,some student,Graded,3,Undergraduate - UNIS Potential Student,Junior,05/21/2014 1:38:15PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,05/21/2014 3:26:55PM
+,123,some student,Graded,3,Undergraduate - Soft Engr - University College,Freshman,05/27/2014 9:08:46AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,05/28/2014 10:49:58AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,05/30/2014 1:40:41PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,06/02/2014 10:58:43AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,06/02/2014 11:35:44AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,06/06/2014 2:14:47PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,06/06/2014 4:59:05PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,06/06/2014 7:34:04PM
+,123,some student,Graded,3,Undergraduate - Physics-BS UTeach Physics/Math,Junior,06/09/2014 4:26:36PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,06/13/2014 7:06:48PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Sophomore,06/16/2014 8:01:05AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,06/16/2014 9:41:29AM
+,123,some student,Graded,3,Second Baccalaureate - Computer Science Intended,Fifth Year,06/17/2014 10:22:10AM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Junior,06/20/2014 4:43:20PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,06/23/2014 11:10:44AM
+,123,some student,Graded,0,Undergraduate - Undeclared Engr Intended,Sophomore,06/23/2014 2:23:50PM
+,123,some student,Graded,3,Undergraduate - Art Intended,Freshman,06/23/2014 3:11:55PM
+,123,some student,Graded,0,Undergraduate - CSE - University College,Freshman,06/25/2014 2:04:32PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,07/07/2014 10:30:55AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,07/24/2014 5:28:14PM
+,123,some student,Graded,0,Undergraduate - Biomedical Engr-University Col,Sophomore,08/15/2014 2:57:33PM
+,123,some student,Graded,3,Undergraduate - Mechanical Engr Intended,Senior,08/19/2014 5:26:54AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,08/19/2014 9:56:56PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended/Mathematics-Minor,Junior,08/20/2014 3:02:00PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Junior,08/20/2014 6:31:10PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,08/21/2014 10:25:40AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,08/21/2014 12:36:14PM
+,123,some student,Graded,0,Undergraduate - CS - University College,Sophomore,08/21/2014 2:05:16PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,09/10/2014 2:56:37PM

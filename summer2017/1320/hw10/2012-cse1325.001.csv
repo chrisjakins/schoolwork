@@ -1,0 +1,41 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,04/02/2012 2:37:06PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,04/04/2012 6:57:52AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,04/05/2012 5:05:38PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,04/09/2012 12:02:27AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,04/09/2012 12:22:33AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Senior,04/09/2012 5:39:18PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,04/10/2012 7:02:58PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,04/11/2012 3:45:51PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,04/12/2012 12:02:03AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,04/12/2012 12:02:33AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,04/12/2012 12:06:56AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,04/12/2012 12:17:12AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,04/12/2012 12:27:57AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,04/12/2012 11:54:01AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Freshman,04/12/2012 3:54:56PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended/Mathematics Intended,Freshman,04/13/2012 12:04:20AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,04/13/2012 1:39:42PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Sophomore,04/13/2012 5:41:03PM
+,123,some student,Graded,0,Undergraduate - Biology - University College,Freshman,04/17/2012 12:28:08PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,04/18/2012 9:13:31AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,04/19/2012 11:45:56AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,04/19/2012 7:29:29PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,04/20/2012 10:41:48AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Sophomore,04/23/2012 2:56:51PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,04/30/2012 2:45:19PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Senior,05/02/2012 12:27:57PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,05/03/2012 10:17:19AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,05/04/2012 9:37:07PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,05/05/2012 11:59:41AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,05/17/2012 12:31:56AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,05/20/2012 1:28:20PM
+,123,some student,Graded,0,Undergraduate - Broadcast Communication Minor/Music Intended,Junior,05/23/2012 7:24:16PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,05/29/2012 11:30:36AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,06/01/2012 3:38:28PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,06/08/2012 12:42:11PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,06/26/2012 2:12:04PM
+,123,some student,Graded,3,Second Baccalaureate - Computer Engineering Intended,Fifth Year,07/12/2012 2:28:41PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,07/19/2012 6:58:11PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,07/24/2012 3:11:07PM
+,123,some student,Graded,3,Undergraduate - Mechanical Engr Intended,Senior,08/21/2012 9:18:57AM

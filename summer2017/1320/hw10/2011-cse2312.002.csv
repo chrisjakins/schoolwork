@@ -1,0 +1,30 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - Mechanical Engineering-BSME,Junior,07/21/2011 11:26:11AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,07/21/2011 12:59:06PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,07/21/2011 2:51:42PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,07/22/2011 5:21:43PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,07/23/2011 11:05:08AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,07/25/2011 3:14:23PM
+,123,some student,Graded,3,Masters - Computer Sci-MS Non Thesis,Graduate,07/25/2011 4:46:09PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,07/25/2011 7:42:54PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Senior,07/26/2011 8:04:53PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,07/27/2011 7:05:31PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,07/29/2011 3:54:35PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,07/29/2011 6:58:41PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,08/01/2011 8:29:00PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,08/02/2011 5:13:02PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,08/03/2011 6:12:15PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/04/2011 5:06:45AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,08/04/2011 4:30:14PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,08/04/2011 9:04:45PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,08/06/2011 12:38:05PM
+,123,some student,Graded,3,Second Baccalaureate - Software Engineering Intended,Fifth Year,08/06/2011 2:54:00PM
+,123,some student,Graded,3,Second Baccalaureate - Computer Science Intended,Fifth Year,08/12/2011 2:14:46PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,08/14/2011 8:29:03PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,08/17/2011 1:49:14PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/19/2011 12:43:01PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,08/23/2011 10:14:07AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/23/2011 4:00:08PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,08/23/2011 5:29:01PM
+,123,some student,Graded,3,Undergraduate - Mathematics-BS,Junior,08/24/2011 2:45:38PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,08/31/2011 2:53:12PM

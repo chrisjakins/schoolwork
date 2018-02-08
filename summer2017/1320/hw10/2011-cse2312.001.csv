@@ -1,0 +1,29 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Message Not Found,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,04/11/2011 12:04:17AM
+,123,some student,Graded,3,Undergraduate - Electrical Engr Intended,Junior,,04/11/2011 9:45:44AM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Senior,Withdrawn,04/12/2011 12:11:10AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,04/13/2011 8:30:30PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,04/19/2011 2:50:17PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,04/19/2011 5:03:00PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended/Mathematics-Minor,Sophomore,,04/20/2011 11:58:03AM
+,123,some student,Graded,3,Undergraduate - Mathematics-Minor/Software Engineering Intended,Sophomore,,04/20/2011 12:13:21PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Freshman,,04/21/2011 3:43:31PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,04/26/2011 4:36:20PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,04/27/2011 1:40:16PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,04/28/2011 9:25:57AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,05/13/2011 8:07:30PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,05/19/2011 4:37:01PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,05/19/2011 7:03:33PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,05/20/2011 3:27:40PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Senior,Withdrawn,05/22/2011 8:08:16AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,06/01/2011 3:00:34AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,06/04/2011 11:48:34PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,06/06/2011 1:56:38PM
+,123,some student,Graded,3,Undergraduate - Mathematics-BS/Business Administration Minor/Computer Science Intended,Senior,,06/16/2011 12:14:56AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended/Music Minor,Junior,,06/21/2011 9:02:02PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,07/01/2011 6:58:10PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,07/13/2011 12:15:53AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,07/14/2011 7:22:45PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,07/20/2011 2:09:54PM
+,123,some student,Graded,0,Undergraduate - Undeclared Intended,Senior,Withdrawn,08/24/2011 3:41:41PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/24/2011 3:53:35PM

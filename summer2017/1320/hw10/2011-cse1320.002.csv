@@ -1,0 +1,27 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Message Not Found,Last Enrollment DateTime
+,123,some student,Graded,0,Undergraduate - History Pre-Law-BA,Junior,Withdrawn,04/13/2011 10:35:49AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,04/13/2011 11:23:05AM
+,123,some student,Graded,0,Undergraduate - Mechanical Engr Intended,Sophomore,Withdrawn,04/14/2011 2:45:18PM
+,123,some student,Graded,0,Undergraduate - English Intended,Sophomore,Withdrawn,04/14/2011 3:24:32PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Freshman,,05/21/2011 3:35:31PM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Junior,Withdrawn,05/22/2011 11:17:17AM
+,123,some student,Graded,0,Undergraduate - Undeclared Intended,Junior,Withdrawn,06/15/2011 3:37:05PM
+,123,some student,Graded,0,Undergraduate - UND - University College,Freshman,Withdrawn,06/22/2011 1:47:37PM
+,123,some student,Graded,3,Masters - Computer Sci-MS Non Thesis,Graduate,,06/30/2011 11:20:01AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Sophomore,Withdrawn,07/19/2011 4:27:39PM
+,123,some student,Graded,3,Undergraduate - Soft Engr - University College,Freshman,,07/22/2011 6:34:17PM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Senior,Withdrawn,08/02/2011 1:59:56PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,,08/04/2011 8:57:00AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/04/2011 1:19:23PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/08/2011 11:06:29PM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Sophomore,Withdrawn,08/10/2011 9:26:49AM
+,123,some student,Graded,0,Undergraduate - Computer Engineering Intended,Sophomore,Withdrawn,08/10/2011 3:08:03PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/12/2011 8:07:02AM
+,123,some student,Graded,3,Undergraduate - Broadcast Communication Minor/Music Intended,Sophomore,,08/12/2011 12:05:50PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Senior,,08/15/2011 12:57:41PM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Sophomore,Withdrawn,08/18/2011 12:18:11PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/23/2011 1:40:16PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/23/2011 3:49:03PM
+,123,some student,Graded,0,Undergraduate - Computer Engineering Intended,Senior,Withdrawn,08/25/2011 10:42:49AM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Sophomore,,08/26/2011 1:11:21PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,,08/29/2011 2:18:04PM

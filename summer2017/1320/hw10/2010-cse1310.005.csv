@@ -1,0 +1,25 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Message Not Found,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/06/2010 4:11:27PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,,08/06/2010 4:14:46PM
+,123,some student,Graded,3,Undergraduate - Biology Intended,Senior,,08/07/2010 11:42:53PM
+,123,some student,Graded,3,Undergraduate - Mechanical Engr Intended,Sophomore,,08/09/2010 7:18:14PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/10/2010 5:28:59PM
+,123,some student,Graded,3,Undergraduate - Mech Engr - University College,Freshman,,08/13/2010 11:53:15AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/13/2010 3:05:00PM
+,123,some student,Graded,0,Undergraduate - Undeclared Engr Intended,Freshman,Withdrawn,08/18/2010 1:15:23PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/19/2010 2:46:13PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,,08/23/2010 8:16:15AM
+,123,some student,Graded,0,Undergrad Non-Degree Seeking - Undeclared Intended,Freshman,Withdrawn,08/25/2010 4:14:56AM
+,123,some student,Graded,3,Undergraduate - Biology - University College,Freshman,,08/25/2010 10:15:02AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/25/2010 3:27:22PM
+,123,some student,Graded,0,Undergraduate - Undeclared Intended,Sophomore,Withdrawn,08/25/2010 4:10:08PM
+,123,some student,Graded,3,Undergraduate - Undeclared Business Intended,Sophomore,,08/25/2010 4:11:06PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/25/2010 4:18:04PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Senior,,08/25/2010 7:22:42PM
+,123,some student,Graded,0,Undergraduate - UND - University College,Freshman,Withdrawn,08/26/2010 8:32:20AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,08/26/2010 12:02:03PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Freshman,,08/27/2010 8:03:33AM
+,123,some student,Graded,0,Undergraduate - Marketing-BBA,Senior,Withdrawn,08/27/2010 12:27:43PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/31/2010 1:19:59PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,09/02/2010 3:21:36PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,09/10/2010 12:41:10PM

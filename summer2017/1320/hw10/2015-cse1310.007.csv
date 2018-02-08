@@ -1,0 +1,46 @@
+Select,ID,Name,Grade Basis,Units,Program and Plan,Level,Message Not Found,Last Enrollment DateTime
+,123,some student,Graded,3,Undergraduate - UBUS - University College,Sophomore,,02/25/2015 9:26:41AM
+,123,some student,Graded,0,Undergraduate - Physics-BS,Junior,Withdrawn,04/08/2015 12:02:15AM
+,123,some student,Graded,3,Second Baccalaureate - Software Engineering Intended,Fifth Year,,04/09/2015 2:28:01AM
+,123,some student,Graded,3,Undergraduate - Mathematics-BA UTeach,Junior,,04/13/2015 2:36:42PM
+,123,some student,Graded,3,Undergraduate - Physics-BS,Junior,,04/15/2015 2:58:00PM
+,123,some student,Graded,0,Undergraduate - Physics-BS,Junior,Withdrawn,04/15/2015 6:19:28PM
+,123,some student,Graded,0,Undergraduate - Biochemistry Intended,Sophomore,Withdrawn,04/16/2015 1:12:46AM
+,123,some student,Graded,0,Undergraduate - CS - University College,Sophomore,Withdrawn,04/17/2015 3:21:49PM
+,123,some student,Graded,3,Undergraduate - Mathematics UTeach Intended,Sophomore,,04/20/2015 11:50:24AM
+,123,some student,Graded,3,Undergraduate - Interdisciplinary Studies-BAIS,Junior,,04/20/2015 12:45:11PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Senior,,04/21/2015 5:47:12PM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Junior,Withdrawn,04/22/2015 8:17:54AM
+,123,some student,Graded,3,Undergraduate - Art Intended,Sophomore,,04/23/2015 11:23:17AM
+,123,some student,Graded,0,Undergraduate - Computer Science Intended,Junior,Withdrawn,04/23/2015 12:07:39PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,04/23/2015 12:52:39PM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Junior,Withdrawn,04/24/2015 4:35:27PM
+,123,some student,Graded,3,Undergraduate - Undeclared Intended,Sophomore,,04/28/2015 11:06:51AM
+,123,some student,Graded,0,Undergraduate - Undeclared Engr Intended,Sophomore,Withdrawn,04/29/2015 12:04:44AM
+,123,some student,Graded,3,Undergraduate - Physics Intended,Junior,,05/04/2015 8:46:19AM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Sophomore,,05/05/2015 12:00:06AM
+,123,some student,Graded,3,Second Baccalaureate - Mathematics Intended,Fifth Year,,05/08/2015 1:33:49PM
+,123,some student,Graded,0,Undergraduate - Electrical Engr Intended,Sophomore,Withdrawn,05/12/2015 2:40:19PM
+,123,some student,Graded,0,Undergraduate - Physics - University College,Junior,Withdrawn,05/20/2015 5:09:18PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Senior,,05/24/2015 1:52:16PM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Sophomore,,05/28/2015 6:07:36PM
+,123,some student,Graded,0,Undergraduate - Mathematics UTeach Intended,Sophomore,Withdrawn,05/29/2015 12:23:50PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended/Theatre Arts Minor,Junior,,06/01/2015 4:18:23PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,06/02/2015 3:48:48PM
+,123,some student,Graded,3,Undergraduate - Software Engineering Intended,Junior,,06/03/2015 12:27:38PM
+,123,some student,Graded,0,Undergraduate - Undeclared Engr Intended,Sophomore,Withdrawn,06/03/2015 4:46:41PM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Junior,,06/03/2015 9:15:06PM
+,123,some student,Graded,3,Undergraduate - CS - University College,Sophomore,,06/04/2015 8:20:21PM
+,123,some student,Graded,0,Undergraduate - Undeclared Business Intended,Freshman,Withdrawn,06/12/2015 3:22:09AM
+,123,some student,Graded,0,Undergraduate - Software Engineering Intended,Sophomore,Withdrawn,06/30/2015 1:59:22PM
+,123,some student,Graded,3,Undergraduate - Physics Intended,Junior,,07/07/2015 9:59:39AM
+,123,some student,Graded,3,Undergraduate - Computer Science Intended,Sophomore,,07/16/2015 2:59:42PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Sophomore,,07/29/2015 4:59:42PM
+,123,some student,Graded,3,Undergraduate - CSE - University College,Freshman,,08/05/2015 2:10:48PM
+,123,some student,Graded,0,Undergraduate - UND - University College,Freshman,Withdrawn,08/13/2015 9:59:39AM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Sophomore,,08/15/2015 3:59:31PM
+,123,some student,Graded,0,Undergraduate - Undeclared Engr Intended,Sophomore,Withdrawn,08/21/2015 1:58:21PM
+,123,some student,Graded,3,Undergraduate - Undeclared Engr Intended,Sophomore,,08/25/2015 10:59:36AM
+,123,some student,Graded,3,Undergraduate - Architecture Intended,Sophomore,,08/26/2015 8:49:27AM
+,123,some student,Graded,3,Undergraduate - Computer Engineering Intended,Junior,,08/26/2015 12:08:38PM
+,123,some student,Graded,0,Undergraduate - Civil Engr-University College,Freshman,Withdrawn,09/14/2015 3:07:40PM
