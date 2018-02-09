@@ -1,0 +1,106 @@
+red to black reset has occurred at root!!!
+red to black reset has occurred at root!!!
+red to black reset has occurred at root!!!
+red to black reset has occurred at root!!!
+STsearchBatch performed 53 key comparisons
+unbatched STsearch performed 255 key comparisons
+search results
+10 found
+20 found
+30 found
+40 found
+50 found
+60 found
+70 found
+80 found
+90 found
+100 found
+110 found
+120 found
+130 found
+140 found
+150 found
+160 found
+170 found
+180 found
+190 found
+200 found
+210 found
+220 found
+230 found
+240 found
+250 found
+260 found
+270 found
+280 found
+290 found
+300 found
+310 found
+STinvSelectBatch performed 53 key comparisons
+unbatched STinvSelect performed 255 key comparisons
+key->rank results
+10 1
+20 2
+30 3
+40 4
+50 5
+60 6
+70 7
+80 8
+90 9
+100 10
+110 11
+120 12
+130 13
+140 14
+150 15
+160 16
+170 17
+180 18
+190 19
+200 20
+210 21
+220 22
+230 23
+240 24
+250 25
+260 26
+270 27
+280 28
+290 29
+300 30
+310 31
+STselectBatch performed 37 rank comparisons
+unbatched STselect performed 255 rank comparisons
+rank->key results
+1 10
+2 20
+3 30
+4 40
+5 50
+6 60
+7 70
+8 80
+9 90
+10 100
+11 110
+12 120
+13 130
+14 140
+15 150
+16 160
+17 170
+18 180
+19 190
+20 200
+21 210
+22 220
+23 230
+24 240
+25 250
+26 260
+27 270
+28 280
+29 290
+30 300
+31 310

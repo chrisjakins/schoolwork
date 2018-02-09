@@ -1,0 +1,165 @@
+red to black reset has occurred at root!!!
+red to black reset has occurred at root!!!
+red to black reset has occurred at root!!!
+red to black reset has occurred at root!!!
+red to black reset has occurred at root!!!
+red to black reset has occurred at root!!!
+STsearchBatch performed 513 key comparisons
+unbatched STsearch performed 879 key comparisons
+search results
+10 found
+18 found
+28 found
+43 found
+121 found
+156 found
+169 found
+228 found
+245 found
+262 found
+269 not found
+276 found
+282 found
+286 found
+294 found
+297 found
+317 found
+347 not found
+356 found
+403 not found
+428 found
+436 not found
+523 found
+529 found
+535 found
+562 not found
+577 found
+583 found
+602 found
+617 found
+645 not found
+659 found
+692 found
+716 found
+793 found
+798 not found
+850 found
+896 found
+931 found
+949 found
+984 found
+1002 found
+1021 not found
+1022 found
+1045 found
+1064 found
+1079 not found
+1085 found
+1121 found
+1176 found
+STinvSelectBatch performed 382 key comparisons
+unbatched STinvSelect performed 734 key comparisons
+key->rank results
+12 11
+74 60
+113 92
+138 113
+161 133
+176 146
+181 151
+215 176
+271 220
+279 228
+280 229
+286 235
+356 293
+365 302
+391 323
+454 370
+493 402
+532 435
+608 500
+617 508
+630 519
+674 558
+684 567
+707 589
+729 609
+753 631
+815 681
+826 691
+832 695
+850 708
+891 744
+905 758
+917 769
+931 781
+948 794
+986 826
+1002 838
+1009 843
+1024 855
+1064 889
+1066 891
+1069 894
+1081 902
+1085 906
+1089 910
+1093 913
+1126 940
+1168 974
+1176 981
+1178 983
+STselectBatch performed 471 rank comparisons
+unbatched STselect performed 882 rank comparisons
+rank->key results
+43 51
+44 52
+91 110
+94 115
+113 138
+120 145
+128 155
+145 175
+157 188
+191 234
+209 257
+237 288
+257 310
+265 320
+294 357
+311 376
+336 407
+360 438
+370 454
+421 517
+423 519
+463 567
+465 569
+476 581
+485 590
+487 592
+538 651
+549 665
+569 686
+593 712
+671 800
+693 830
+726 871
+728 873
+746 893
+757 904
+767 915
+819 979
+825 985
+884 1056
+885 1057
+910 1089
+918 1101
+924 1107
+939 1125
+948 1134
+955 1142
+960 1147
+966 1160
+999 1197

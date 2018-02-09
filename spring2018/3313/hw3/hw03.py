@@ -30,9 +30,7 @@ def convertToBits( values ) :
     for x in range(0, int( len(data) / 10 )) :
         pulseIn = data[10 * x : 10 * x + 10]
         normIn = np.linalg.norm( pulseIn )
-
-        if ( norm0 * normIn - np.absolute(pulse0.dot(pulseIn)) <
-             norm1 * normIn - np.absolute(pulse1.dot(pulseIn)) ) :
+        if ( np.absolute(pulse0.dot(pulseIn)) > np.absolute(pulse1.dot(pulseIn)) ) :
             bits.append( 0 )
         else :
             bits.append( 1 )
