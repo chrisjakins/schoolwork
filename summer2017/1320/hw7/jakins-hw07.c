@@ -1,3 +1,7 @@
+/* Chris Jakins */
+/* HW7 */
+/* CSE1320 */
+/* 7/26 */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -31,10 +35,24 @@ int main(void)
     
     printList(head);
     destroyList(head);
-
     return EXIT_SUCCESS;
 }
 
+/*  this function inserts a new node into the proper location
+    of the linked list pointed to by argument head:
+    if head is null (list does not yet exit)
+        initialize the list with arguments name and cost
+    otherwise loop through the linked list
+        if argument name goes before the node currently on
+            if that is the first/head node 
+                create new node at head of list
+            else (argument goes somewhere in middle of list)
+                insert new node and make proper connections
+        else if argument name is EQUAL to current node name
+            update node
+    end loop
+    if control flow reaches here, argument name goes at end of list
+        so we add new node to tail */
 Node * updateList(Node * head, char * name, int cost)
 {
     Node * temp, * prev, * new;
@@ -73,6 +91,7 @@ Node * updateList(Node * head, char * name, int cost)
     return head;
 }
 
+/*  this function handles creation of new nodes */
 Node * allocNode(Node * node, char * name, int cost, Node * prev, Node * next)
 {
     node = malloc(sizeof(Node));
@@ -84,6 +103,9 @@ Node * allocNode(Node * node, char * name, int cost, Node * prev, Node * next)
     return node;
 }
 
+/*  this function tokenizes the line for the
+        name (first token of line)
+        cost (immediately preceded by $) */
 void tokenize(char * line, char ** name, int * cost)
 {
     char * token, * delim = " $.";
@@ -101,6 +123,7 @@ void tokenize(char * line, char ** name, int * cost)
     }
 }
 
+/*  prints linked list pointed to by argument head */
 void printList(Node * head)
 {
     Node * temp;
@@ -108,6 +131,7 @@ void printList(Node * head)
         printf("%s, %d\n", temp->name, temp->cost);
 }
 
+/*  frees all memory associated with linked list */
 void destroyList(Node * head)
 {
     Node * temp, * next;
@@ -118,6 +142,7 @@ void destroyList(Node * head)
     }
 }
 
+/*  frees the memory of a node */
 void freeNode(Node * node)
 {
     free(node->name);
