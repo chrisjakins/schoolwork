@@ -1,0 +1,548 @@
+=======================================
+       SOFTWARE DESIGN PATTERNS
+=======================================
+general reusable algorithm solving a common problem,
+    discovered not inventeed, documented and validated
+    by the software community at large (meritocracy)
+
+Singleton
+    restricts a class to instancing a single object to
+        coordinate actions across a system
+    KEY --- private constructor
+    the instance keeps a private reference to itself
+    a static getInstance() method:
+        returns the existing instance or creates the instance and saves it
+
+Model-View-Controller
+    separates the business logic (Model) from input (Controller) and
+        output (View).
+    Allows swapping out of controller and view while keeping the model the same
+
+Facade
+    Implements a simplified interface to a complex class/package
+    Can do this by making good assumptions or eliminating rarely used options,
+        reduce dependencies, or reorganizing the interface
+
+Observer
+    notifies dependent objects when the observed event occurs
+    most useful for implementing distributed event handling systems
+    GUI use :
+        1) declare/configure window
+        2) declare widgets to populate window
+        3) configure each widget and 'add' them to window
+        4) assign callbacks (register observers) to each widget's behavior of interest
+            (events) so that they can respond to user interaction
+        5) show window
+        6) turn control over to GUI tool kit's main loop
+
+Factory
+    creates new objects without exposing the creation logic to the client
+    AOT : new Object(), Factory.getObject(..) which returns the object created
+    client specifies what is needed, factory return appropriate object
+
+Adapter
+    implements a bridge between two classes with incompatible interfaces
+    uses the interface from the 'server class' to implement the interface expected
+        by the 'client class'
+    translates in both directions
+
+Strategy (Policy)
+    enables an algorithm's behavior to be modified at runtime
+    provides a common interface to multiple methods
+        dynamically selects between them based on specific criteria
+
+State Design
+    supports full encapsulation of unlimited states within a scalable context
+
+Decorator
+    dynamically adds new functionality to an object without altering its structure
+    relies on composition to reuse the decorated class code
+
+=======================================
+      OBJECT-ORIENTED PRINCIPLES
+=======================================
+
+Abstraction
+    Provide a higher-level concept to hide details
+
+Encapsulation
+    Bundling data and related code into a single container
+    PUBLIC: Everything that can use the base class, can use public members
+    PROTECTED: Only children/derived classes can use protected members
+    PRIVATE: Only the class itself can use private members
+
+Inheritance
+    "is-a" relationship
+    Reuse and extension of fields and method implementations from another class
+    Derived class is extended from the Base class
+    Constructors don't inherit
+    PUBLIC: all public/protected fields in base will be public/protected in derived
+    PRIVATE: public fields in base will be private in derived
+    PROTECTED: public/protected fields in base will be protected in derived
+
+Multiple Inheritance
+    A derived class inheriting class members from two or more base classes.
+    Diamond problem - inheritance paths are no longer obvious
+        results in compiler error
+        need explicit base class method call i.e. d.B::foo();
+        virtual inheritance also takes care of this problem
+            intermediate classes defined : class B : public virtual A {}
+            this keeps a single block of memory for A that is reference, resolving
+                ambiguity
+
+Polymorphism
+    Allowing a class to take on many different forms
+    Provision of a single interface to multiple derived classes
+        enables the same method call to invoke different derived methods to generate
+            different results
+    enabled with references and pointers
+    virtual methods allow following the type of the actual OBJECT, rather then the variable
+
+Constructors
+    NOT a method, same name as class and no return type
+    if you don't specify one, a default will be made
+    can have multiple constructors
+    Constructor Chaining - an easy way to provide a default value
+        Class() : Class(5) {}
+        Class(int init) : _classVar{init} {}
+    The 'default' constructor calls the specified constructor with the default
+        value, this allows for easier cleanup and less room for error
+    
+RULE OF THREE
+    If your class needs one of these, define all three
+    Copy Constructor - defaults to copy the members
+        needed if the class includes pointers or dynamic memory allocation
+        defined : Foo(const Foo &rhs) : _val{rhs.val()} {}
+        Foo bar1 = bar2
+        bar1{bar2}
+        return bar1
+    Copy Assignment - defaults to copy the members
+        used when an instance is to the left of the "=" operator
+        overwrites the left hand object's values
+        defined : Foo& operator=(const Foo &rhs) {
+            if (this != &rhs) _val = rhs.val();
+            return *this;
+        }
+        bar2 = bar1
+    Destructor - defaults to nothing
+        used to "clean up" dynamic memory when an object is deleted/destroyed
+
+Operator Overloading
+    defining what operators mean for a class
+    most cases declared as a friend to a class and then defined outside
+    EX : operator+(param1, param2) {}
+    stream overloading generally defined as a friend
+    cannot overload : :: .* . ?:
+
+Override
+    replacing a base class method with one defined in the derived class
+    To work properly, the base class method should be defined as virtual
+
+Abstract Class
+    1+ pure virtual methods/constructors i.e. Class() = 0;
+    cannot be instanced
+    can be used as a type whose variables contain objects of derived types, generally
+        used as a base class
+
+Class Libraries
+    collection of prewritten classes, often designed as templates.
+    work together to facilitate writing applications
+    (.NET, iOS, Gtk+, Qt, Boost)
+
+Generalization
+    process of extracting shared characteristics from two+ classs, combining them into
+        a generalized base class.
+    can be attributes, associations, methods
+    opposite of Specialization
+        taking general class and determining base classes
+
+=======================================
+                 GIT
+=======================================
+git checkout <filename>
+    restore filename contents to that of last commit
+
+Branch
+    second dev path within same company/project
+    git checkout -b branchName
+        creates the branch and switches to it
+        commits are made to this branch
+    git checkout master
+    git merge branchName
+        merge branches back to master
+        
+Fork
+    second dev path from different company/project
+
+Baseline
+    reference point in version control system, indicating completion and approval
+        of a product release
+    sometimes used as a starting point for a branch/new product
+=======================================
+                 UML
+=======================================
+
+Associations
+    can be general/directional
+    can be named and include multiplcity/role
+    Aggregation - a class is constructed of 1+ other classes
+        i.e. library includes many books
+    Composition - existence of a class depends on the aggregate
+        i.e. libraries exist without books, but a book cannot exist without pages
+
+Top level Diagram 
+    no rules, not UML
+    powerpoint engineering, looks good
+
+Sequence Diagram
+    Lifeline - period of existence of an object
+    Activation - initiation of processing between object timelines
+    Occurrences - method execution within a timeline
+    Termination of an object timeline (X)
+    return of an activation
+    focuses on interactions
+
+Class Diagram
+    "battle map" for implementation
+    instance counter - number of relative objects in system
+    named association - "x <does> y" where <does> is the association
+
+Use Case Diagram
+    scenarios as 'action' classes
+    system boundary
+    actors outside the boundary
+
+Activity Diagram
+    sequence of activities at the algorithm level (flow chart)
+    represents decisions as well as concurrency
+    start point -> activity -> guard (conditional)/decision points -> end point
+    focuses on actions
+
+State Diagram
+    State - cumulative value of all relevent stored information to which a system has access
+    output is completely determined by current state and current inputs
+    Documents the states, permissible transitions, and activities
+    Elements - 
+        initial state (circle)
+        state (rectangles) - name, activity
+        transition - event (label), guard (bool inside square brackets), activity/output
+            Guard - boolean expression that enables a state transition when true
+            Event - type of occurrence that potentially affects the state of the system
+        final state
+    Mealy - defines output based on current state & inputs
+        defined on transitions, follow inputs immediately
+        generally fewer states
+    Moore - outputs defined based solely on current state
+        defined IN states, change only on clock edges
+
+Deployment Diagram
+    models the physical deployment of artifacts on nodes
+    Artifact - result of software dev process (exe, script, media file, etc)
+    Node - physical/logical computational resource
+    Types
+        Implementation of Components by Artifacts
+            shows realization of components into artifacts
+        Specification-Level Deployment
+            Overview of deployment by artifact and node types (workstation/virtual server)
+        Instance-Level Deployment
+            Shows deployment of specific instances of artifacts
+        Network Architecture
+            Connection of nodes via communication paths
+
+=======================================
+        INTELLECTUAL PROPERTY
+=======================================
+
+Trademark (logo)
+    symbol/name established by use as representing a company or product
+    avoids customer confusion
+    established by use, better to register
+
+Patent (process)
+    exclusive right to make, use, sell an invention
+    protect new/improved processes, machines, etc if:
+        novel and non-obvious
+        not yet published or in general use
+        not previously patented
+    generally last for 20 years after date of application "patent pending"
+
+Copyright (printing right)
+    exclusive right to print/publish/perform/execute/record a creative wor
+        or its derivatives, and allow others to do the same
+    automatic when creating a new work, but better to register
+    70 years after death of author   \
+    95 years after publication       -   whichever comes first
+    120 years after creation         /
+
+Licenses:
+    public domain - all ownership is disclaimed
+    permissive - permits use, copying, distribution, and (usually with attribution)
+        derivatives, even proprietary derivatives
+    protective - similar to permissive, but with share-alike rules
+    shareware - permits limited use, copying, and distribution
+    proprietary - permits restricted use
+    trade secret - restricts use to copyright holder
+
+
+=======================================
+              C++ ISM'S
+=======================================
+
+Vectors
+    type must be specified when declared
+    good for adding/removing at the end of the list -- .push_back()
+    dynamically-allocated memory, therefore can use pointer arithmetic
+    .begin(), .end();
+
+Strings
+    not invariant, max memory does not need to be known at definition
+    can be compared for equality (unlike C)
+
+Enum Class
+    similar to enums, managed user-defined type
+    cannot be interchanged with ints/other class enums
+        this is unlike regular enums
+
+Templates
+    template <class T> - needed for class/method definitions
+    a construct representing a function or class in terms of generic types
+    the type specified must supply the needed methods
+    must declare AND implement the interface in the same file (.h)
+        always declarations until they are instanced
+        once instanced, c++ generates code using parameterized type
+
+Iterators
+    pointer-like instance of a nested class used to access items 
+        managed by outer class instance
+    can be incremented ++ or dereferenced *
+    iterator - dereferenced item can be modified
+    const_iterator - prevents modification
+    all iterators must provide:
+        copy constructor/destructor
+        operator=, operator++, operator*
+
+For Each Loop
+    makes a copy of each element of the container
+    best used when you don't need the index
+
+constexpr - functions that are evaluated at compile time
+            compiler substitutes the value as a constant
+
+Static - stored with the class, not the object
+         can be accessed without instancing the class
+         even methods can be static
+         must be defined outside the class
+
+Const - value stored cannot be changed 
+
+References - thought of as an 'alternative name'
+             can be made const, so it can't be modified
+             can't change what the reference variable is referencing!
+                no dangling pointers!
+
+Memory is allocated when a variable is DEFINED, not when it is DECLARED
+    Note: this is unlike C, where memory is allocated when declared
+
+Heap Allocation
+    'new' allocates memory i.e. ::: double *x = new double[3];
+    'delete' frees the memory   ::: delete[] x;
+    delete[] for arrays, delete for primitive types and objects
+
+Smart pointers (reference counted)
+    std::unique_ptr<T> - memory allocated when object goes out of scope
+    std::shared_ptr<T> - reference counter
+    similar to garbage collection in Java, Python, C#, etc
+    deletes itself when no more references left
+
+Direct initialization
+    ex: int x{5};
+
+friend
+    defined outside of class scope yet has access to all private/protected members
+    declared within the class to 'grant' friendship
+    one-way unless mutually declared
+    usually a function, but can be a class
+
+typedef
+    define an alias for a complex type (long name), makes code more readable
+
+lambda
+    anonymous function object, defined where invoked or passed as an argument
+    should be short, only used once
+    [](param list){return value;}
+    [] - capture clause, can be used to access variables from the surrounding scope
+        can use & to reference those variables
+        can use &/= to reference/copy all variables
+    return type is default to auto but can specified as [](pl)->returnType{...}
+    param list is optional
+
+I/O
+    Files - self-contained named sequence of bytes available via the OS
+        text - read, debug, portable, size
+        binary - image/sound files, compressed or encrypted files
+        ofstream/ifstream/fstream
+        Open Modes - can combine with |
+            app - append
+            ate - at end
+            binary
+            in/out
+            trunc
+    Streams - type-safe, less error prone, extensible, inheritable
+        Manipulators
+            sticky - hex, oct, bin, showbase, noshowbase
+                     defaultfloat, scientific, fixed, setprecision(numDig)
+            transient - setw(min_width) (will stretch to allow output to fit)
+    Stream States - 
+        good - success
+        eof - hit the end of input
+        fail - something unexpected happend, i.e. format error
+        bad - something unexpected & serious happened
+
+=======================================
+               TESTING
+=======================================
+Interactive Testing
+    run the program like a nightmare user, trying to break it
+
+Regression Testing
+    write a test program (Unit/Regression Test)
+    cover ALL usages and good/bad inputs
+
+Test-Driven Developement
+    write tests first and PROVE that they fail
+    then write code to make the tests pass
+    repeat for other requirements
+
+Debugging
+    breakpoint - program flow stops right before line of code is executed
+
+Pre-conditions
+    what does a function require of its arguments
+
+Post-conditions
+    what must be true when a function returns
+
+Assert
+    takes a boolean expression
+    if evaluated to false, the program aborts
+    used for an interface error
+    can't recover from the error as opposed to...
+
+Exceptions
+    direct path to error handling, recoverable errors
+
+=======================================
+                GUI 
+=======================================
+History
+    Paper tape:1725 for weaving looms, :1846 for telegrams,
+    Punch/Hollerith cards:1832, Charles Babbage/Lovelace, Nixie tubes,
+    GUIs (windows):1984, VoiceUI:1996, Touch Interface:2006, Siri:2011
+
+Principle of Least Astonishment - "A user interface component should behave
+    as the users expect it to behave"
+    Should be discoverable, no manuals
+
+Scaling - resizing a digital image
+Translation - moving all digital image pixels a fixed distance
+
+CLI - Program is in control and queries for information
+GUI - the user is in control and the program reacts to their actions
+
+"Dirty Bit"
+    records if exiting the program would lose data or not, so the user can be warned.
+
+GTK
+    ::manage(new Gtk::____{}); - manages nested widgets, similar to smart pointers
+    ::Main - singleton class, initializer
+    ::DrawingArea - allows drawing with a mouse/other in devices
+        MUST override on_draw, automatically called 
+            can call queue_draw to request a screen update
+    ::Application::create - static method handling routine app initialization
+        argc, argv, appId, flags
+        appId = 2+ elements separated by periods, reverse domain is traditional
+    ::Window - created a window widget 
+        can only hold one widget inside
+    ::Dialog - a popup to interact with user
+        LOTS of subclasses for different types of dialogs
+    ::ustring - gtk's string version, handles unicode well
+    ::Widget - A base class for a lot of interactive tools
+    ::Label - displays read-only text
+    ::Entry - accepts a single line of text from the user
+    ::Image - can hold static/animated images, generally from a file
+    Signals - signal_clicked() - buttons
+            also signal_activate(), *_enter(), *_leave(), *_pressed(), *_released(), etc
+            then connect() accepts a 'functor' to call when signal emitted
+                sigc::mem_fun(&class, &method) convert object with method into functor
+    ::Box - a single row/column of widgets which can be individually configured
+        ::VBox, ::HBox
+    ::ButtonBox - a single row/column of widgets configured as a GROUP
+    ::Toolbar - an array of buttons
+    ::Grid - 2D array of widgets, each individually configured
+    Nested containers allow creation of complex dialogs/windows
+    ::MenuBar - dropdown menu with ::MenuItem's -> ::Menu's -> ::MenuItem's
+        .signal_activate()
+
+Pango
+    markup language similar to HTML, can be used in GTK
+
+=======================================
+         SOFTWARE DEVELOPMENT 
+=======================================
+Second System Effect
+    version 2.0 is the most dangerous version ever attempted
+    small, elegant, successful systems succeeded by over-engineered, bloated systems
+
+Waterfall process
+    Requirements - Design - Implementation - Verification - Maintenance
+        sometimes include tests
+    Requirements can and will change throughout development
+    All requirements completed before delivery
+        20% deliver 80% of the full value
+
+Agile
+    Individuals/Interactions, Working software, Customer collaboration, Change
+    SCRUM - agile process, since 1986
+        Product Owner, Scrum Master, Team Members
+        Product Backlog, Sprint Backlog, Burn Chart, Task Board
+        Sprints - time-boxed period of work implementing 1+ product backlog items
+            any incomplete Backlog items go back on the backlog for next sprint
+            ready to deliver at the end of every sprint
+
+Architecture
+    The set of implementation elements and associated integration mechanisms
+        necessary to meet system requirements
+
+Architect
+    The engineering role that specifies system's architecture
+
+Embedded Programming
+    Hard real-time - correct answer after needed is wrong answer
+        execution time must be predictable
+            memory allocation, system libraries, exceptions
+            preallocated structures help (pools of fixed size objects)
+    Soft real-time - flexibility with when answer is needed
+    Software runs on special hardware, must prepare for issues, portability. reliability
+
+Generic Programming
+    Writing algorithms in terms of types that are specified as parameters during 
+        instantiation or invocation
+
+Concurrency
+    Performing 2+ algorithms simultaneously
+
+Process
+    A self-contained execution environment including its own memory space
+
+Thread
+    "person"
+    An independent path of execution within a process
+    std::thread - each has a unique thread ID
+        thread::sleep_for()
+    can be joined back to main thread
+
+Mutex
+    "door handle"
+    only one thread can access at a time
+    lock - "person hand"
+    resource - "phone"
