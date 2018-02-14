@@ -50,11 +50,14 @@ int main()
         }
         else
         {
+            /* store in array */
             char path1[MAX_COMMAND_SIZE] = "/bin/";
             char path2[MAX_COMMAND_SIZE] = "/usr/bin/";
             char path3[MAX_COMMAND_SIZE] = "/usr/local/bin/";
             char path4[MAX_COMMAND_SIZE] = "./";
 
+
+            /* look at execv */
             char * command = strcat(path1, token[0]);
             execErr = execve(command, token, 0);
 
