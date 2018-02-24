@@ -17,15 +17,46 @@
 #define MAX_COMMAND_SIZE 255
 #define MAX_NUM_ARGUMENTS 11
 
-#define HISTORY_NUM 15
-#define SHOWPIDS_NUM 10
 char * stringBuiltin[] = {"cd", "history", "showpids"};
 
 #define PATH_NUM 4
 char paths[PATH_NUM][MAX_COMMAND_SIZE] = {"/bin/", "/usr/bin/", "/usr/local/bin/", "./"};
 
+/******
+        DATA STRUCTURES
+******/
+
+#define HISTORY_NUM 15
+#define SHOWPIDS_NUM 10
+
+typedef struct HistoryNode {
+    struct HistoryNode * next;
+    char * command;
+} HistoryNode;
+
+typedef struct PidNode {
+    struct PidNode * next;
+    pid_t pid;
+} PidNode;
+
+/**** Initialize data structures ****/
+HistoryNode * historyHead = NULL;
+PidNode * pidHead = NULL;
+
+/******
+        FUNCTIONS
+******/
+
+/* data structure maintainence functions */
+void addHistoryNode(char *);
+void cleanHistoryList();
+
+void addPidNode(pid_t);
+void cleanPidList();
+
 /* high-level shell operations */
 int readInput(char **);
+int parseInput(char *, char **);
 int execute(char **);
 
 /* signal handling functions */
@@ -33,16 +64,17 @@ void handleSIGTSTP(int sig);
 
 /* built-in functions */
 int cd(char **);
-int history();
-int showpids();
+int history(char **);
+int showpids(char **);
+int repeatCommand(char **);
 
 /*******
         MAIN
 *******/
+
 int main() {
-    char ** token = malloc( MAX_NUM_ARGUMENTS );
-    int status, tokenCount;
-    int execErr = 0;
+    char ** token = malloc(MAX_NUM_ARGUMENTS);
+    int status;
 
     /* init handler for ctrl-z */
     struct sigaction tstop;
@@ -52,14 +84,15 @@ int main() {
 
     do {
         printf("msh> ");
-        memset(token, '\0', sizeof(token));
-        tokenCount = readInput(token);
+        memset(token, '\0', MAX_NUM_ARGUMENTS * sizeof(token));
+        readInput(token);
         status = execute(token);
 
     } while (status);
 
-    printf("That was fun! Exiting...\n");
     free(token);
+    cleanHistoryList();
+    cleanPidList();
     return 0;
 }
 
@@ -79,10 +112,12 @@ int readInput(char ** token) {
 
     while (!fgets(cmdStr, MAX_COMMAND_SIZE, stdin)) ;
 
+    addHistoryNode(cmdStr);
+/*
     int tokenCount = 0;
     char * argPtr;
     char * workingStr = strdup(cmdStr);
-    char * workingRoot = workingStr;
+
 
     while (((argPtr = strsep(&workingStr, WHITESPACE)) != NULL) &&
               (tokenCount < MAX_NUM_ARGUMENTS)) {
@@ -96,7 +131,30 @@ int readInput(char ** token) {
     }
 
     free(cmdStr);
-    free(workingRoot);
+    free(workingStr);
+    return tokenCount; */
+
+    return parseInput(cmdStr, token);
+}
+
+int parseInput(char * input, char ** token) {
+    int tokenCount = 0;
+    char * workingStr = strdup(input);
+    char * argPtr;
+
+    while (((argPtr = strsep(&workingStr, WHITESPACE)) != NULL) &&
+              (tokenCount < MAX_NUM_ARGUMENTS)) {
+
+        token[tokenCount] = strndup(argPtr, MAX_COMMAND_SIZE);
+
+        if (strlen(token[tokenCount]) == 0) {
+            token[tokenCount] = NULL;
+        }
+        tokenCount++;
+    }
+
+    free(input);
+    free(workingStr);
     return tokenCount;
 }
 
@@ -115,18 +173,25 @@ int execute(char ** params) {
 
     } else if (strcmp(params[0], stringBuiltin[1]) == 0) {
 
-        execErr = history();
+        execErr = history(params);
 
     } else if (strcmp(params[0], stringBuiltin[2]) == 0) {
 
-        execErr = showpids();
+        execErr = showpids(params);
+
+    } else if (params[0][0] == '!') {
+
+        execErr = repeatCommand(params);
 
     } else {
 
         pid_t pid = fork();
 
         if (pid != 0) {
+
+            addPidNode(pid);
             waitpid(pid, &status, 0);
+
         } else {
             /* child process */
             char * command;
@@ -144,7 +209,7 @@ int execute(char ** params) {
 }
 
 int run() {
-
+    return 1;
 }
 
 /******
@@ -153,11 +218,101 @@ int run() {
 
 void handleSIGTSTP(int sig) {
     printf("Hello %d\n", sig);
+    fflush(stdin);
 }
 
 /******
         BUILT-IN FUNCTIONS
 ******/
+
+void addHistoryNode(char * cmd) {
+    if (cmd[0] == '!') return;
+
+    HistoryNode * newNode = malloc(sizeof(HistoryNode));
+    newNode->next = NULL;
+    newNode->command = strdup(cmd);
+    
+    HistoryNode * temp = historyHead;
+    if (!temp) {
+        historyHead = newNode;
+        return;
+    }
+    
+    int count = 1;
+    while (temp->next && count < HISTORY_NUM) {
+        temp = temp->next;
+        count++;
+    }
+
+    temp->next = newNode;
+    
+    if (count == HISTORY_NUM) {
+        temp = historyHead->next;
+
+        free(historyHead->command);
+        free(historyHead);
+        
+        historyHead = temp;
+    }
+}
+
+void cleanHistoryList() {
+    HistoryNode * temp = historyHead;
+
+    while (temp) {
+        temp = temp->next;
+
+        free(historyHead->command);
+        free(historyHead);
+
+        historyHead = temp;
+    }
+}
+
+void addPidNode(pid_t pid) {
+    PidNode * newNode = malloc(sizeof(PidNode));
+    newNode->pid = pid;
+    newNode->next = NULL;
+
+    PidNode * temp = pidHead;
+    if (!temp) {
+        pidHead = newNode;
+        return;
+    }
+
+    int count = 1;
+    while (temp->next && count < SHOWPIDS_NUM) {
+        temp = temp->next;
+        count++;
+    }
+
+    temp->next = newNode;
+
+    if (count == SHOWPIDS_NUM) {
+        temp = pidHead->next;
+
+        free(pidHead);
+
+        pidHead = temp;
+    }
+}
+
+void cleanPidList() {
+    PidNode * temp = pidHead;
+
+    while (temp) {
+        temp = temp->next;
+
+        free(pidHead);
+
+        pidHead = temp;
+    }
+}
+
+/******
+        BUILT-IN FUNCTIONS
+******/
+
 int cd(char ** params) {
     char cwd[1024];
 
@@ -182,13 +337,41 @@ int cd(char ** params) {
 }
 
 int history(char ** params) {
-    printf("in history\n");
+    HistoryNode * temp = historyHead;
 
+    int i = 1;
+    for ( ; temp; temp = temp->next, i++) {
+        printf("%d: %s", i, temp->command);
+    }
     return 1;
 }
 
 int showpids(char ** params) {
-    printf("in showpids\n");
+    PidNode * temp = pidHead;
+
+    int i = 1;
+    for ( ; temp; temp = temp->next, i++) {
+        printf("%d: %d\n", i, temp->pid);
+    }
+
+    return 1;
+}
+
+int repeatCommand(char ** params) {
+    int cmdNum = atoi(params[0]);
+
+    HistoryNode * temp = historyHead;
+    int count = 1;
+    while (temp && count < cmdNum) {
+        temp = temp->next;
+    }
+
+    if (!temp) {
+        printf("msh: !%d: event not found", cmdNum);
+    }
+
+    addHistoryNode(temp->command);
+
 
     return 1;
 }
