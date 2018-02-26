@@ -81,7 +81,7 @@ int main() {
     initHandlers();
 
     do {
-        /* memset(token, '\0', MAX_NUM_ARGUMENTS); */
+        memset(token, '\0', sizeof(token) * MAX_NUM_ARGUMENTS);
 
         printf("msh> ");
         readInput(token);
@@ -92,7 +92,7 @@ int main() {
     for (i = 0; i < MAX_NUM_ARGUMENTS && token[i]; i++) {
         free(token[i]);
     }
-    free(token);
+    //free(token);
     cleanHistoryList();
     cleanPidList();
     return 0;
@@ -115,6 +115,10 @@ int readInput(char ** token) {
     char * cmdStr = malloc(MAX_COMMAND_SIZE);
 
     while (!fgets(cmdStr, MAX_COMMAND_SIZE, stdin)) ;
+
+    if (strcmp(cmdStr, "\n") == 0) {
+        return 0;
+    }
 
     int tokenCount = parseInput(cmdStr, token);
     addHistoryNode(cmdStr, token);
@@ -141,7 +145,7 @@ int parseInput(char * input, char ** token) {
     while ((argPtr = strsep(&workingStr, WHITESPACE)) != NULL &&
             tokenCount < MAX_NUM_ARGUMENTS) {
 
-        if (strlen(argPtr)) {
+        if (*argPtr && strlen(argPtr)) {
             token[tokenCount] = strndup(argPtr, MAX_COMMAND_SIZE);
             tokenCount++;
         }
@@ -155,49 +159,51 @@ int execute(char ** params) {
     int status, execErr = 0;
 
     /* if the user entered exit or quit, return 0 to end main */
-    if (params[0] != NULL && 
-       (strcmp(params[0], "exit") == 0 || strcmp(params[0], "quit") == 0)) {
+    if (params[0]) {
+        if (strcmp(params[0], "exit") == 0 || strcmp(params[0], "quit") == 0) {
 
-        return 0;
+            return 0;
 
-    } else if (strcmp(params[0], stringBuiltin[0]) == 0) {
+        } else if (strcmp(params[0], stringBuiltin[0]) == 0) {
 
-        execErr = cd(params);
+            execErr = cd(params);
 
-    } else if (strcmp(params[0], stringBuiltin[1]) == 0) {
+        } else if (strcmp(params[0], stringBuiltin[1]) == 0) {
 
-        execErr = history(params);
+            execErr = history(params);
 
-    } else if (strcmp(params[0], stringBuiltin[2]) == 0) {
+        } else if (strcmp(params[0], stringBuiltin[2]) == 0) {
 
-        execErr = showpids(params);
+            execErr = showpids(params);
 
-    } else if (params[0][0] == '!') {
+        } else if (params[0][0] == '!') {
 
-        execErr = repeatCommand(params);
-
-    } else {
-
-        pid_t pid = fork();
-
-        if (pid != 0) {
-
-            addPidNode(pid);
-            waitpid(pid, &status, 0);
+            execErr = repeatCommand(params);
 
         } else {
-            /* child process */
-            char * command;
-            for (int i = 0; i < 4; i++) {
-                command = strcat(paths[i], params[0]);
-                execErr = execv(command, params);
+
+            pid_t pid = fork();
+
+            if (pid != 0) {
+
+                addPidNode(pid);
+                waitpid(pid, &status, 0);
+
+            } else {
+                /* child process */
+                char * command;
+                int i;
+                for (i = 0; i < 4; i++) {
+                    command = strcat(paths[i], params[0]);
+                    execErr = execv(command, params);
+                }
             }
-        }
-        if (execErr) {
-            printf("%s: Command not found.\n", params[0]);
+            if (execErr) {
+                printf("%s: Command not found.\n", params[0]);
             /* child exits */
             exit(1);
-        } 
+            } 
+        }
     }
     return 1;
 }
@@ -279,18 +285,18 @@ void addHistoryNode(char * cmd, char ** cmdArray) {
 
 void cleanHistoryList() {
     HistoryNode * temp = historyHead;
-    /* int i; */
+    int i;
 
     while (temp) {
         temp = temp->next;
 
         free(historyHead->command);
+        /*
+        for (i = 0; i < MAX_NUM_ARGUMENTS && historyHead->commandTokens[i] != NULL; i++) {
+            free(historyHead->commandTokens[i]);
+        }
 
-        /* for (i = 0; i < MAX_NUM_ARGUMENTS && historyHead->commandTokens[i] != NULL; i++) { */
-            /* free(historyHead->commandTokens[i]); */
-        /* } */
-
-        free(historyHead->commandTokens);
+        free(historyHead->commandTokens); */
         free(historyHead);
 
         historyHead = temp;
