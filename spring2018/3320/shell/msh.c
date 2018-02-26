@@ -75,7 +75,7 @@ int repeatCommand(char **);
 
 int main() {
     char ** token = malloc(MAX_NUM_ARGUMENTS);
-    int status;
+    int status, i;
 
     /* init handler for ctrl-z */
     struct sigaction tstop;
@@ -84,13 +84,17 @@ int main() {
     sigaction(SIGTSTP, &tstop, NULL);
 
     do {
+        /* memset(token, '\0', MAX_NUM_ARGUMENTS); */
+
         printf("msh> ");
-        memset(token, '\0', MAX_NUM_ARGUMENTS * sizeof(token));
         readInput(token);
         status = execute(token);
 
     } while (status);
 
+    for (i = 0; i < MAX_NUM_ARGUMENTS && token[i]; i++) {
+        free(token[i]);
+    }
     free(token);
     cleanHistoryList();
     cleanPidList();
@@ -102,6 +106,8 @@ int main() {
 ******/
 
 /*
+    input -> will not be modified throughout lifetime of this code
+
     token -> array of strings ending in (null) are stored here after function returns
     number of tokens is returned
 
@@ -113,27 +119,6 @@ int readInput(char ** token) {
 
     while (!fgets(cmdStr, MAX_COMMAND_SIZE, stdin)) ;
 
-/*
-    int tokenCount = 0;
-    char * argPtr;
-    char * workingStr = strdup(cmdStr);
-
-
-    while (((argPtr = strsep(&workingStr, WHITESPACE)) != NULL) &&
-              (tokenCount < MAX_NUM_ARGUMENTS)) {
-
-        token[tokenCount] = strndup(argPtr, MAX_COMMAND_SIZE);
-
-        if (strlen(token[tokenCount]) == 0) {
-            token[tokenCount] = NULL;
-        }
-        tokenCount++;
-    }
-
-    free(cmdStr);
-    free(workingStr);
-    return tokenCount; */
-
     int tokenCount = parseInput(cmdStr, token);
     addHistoryNode(cmdStr, token);
 
@@ -141,23 +126,31 @@ int readInput(char ** token) {
     return tokenCount;
 }
 
+/*
+    input -> will not be modified throughout lifetime of this code
+
+    token -> array of strings ending in (null) are stored here after function returns
+    number of tokens is returned
+
+    this code taken from Trevor Bakker :
+    https://github.com/CSE3320/Shell-Assignment/blob/master/mfs.c
+*/
 int parseInput(char * input, char ** token) {
     int tokenCount = 0;
     char * workingStr = strdup(input);
+    char * workingRoot = workingStr;
     char * argPtr;
 
-    while (((argPtr = strsep(&workingStr, WHITESPACE)) != NULL) &&
-              (tokenCount < MAX_NUM_ARGUMENTS)) {
+    while ((argPtr = strsep(&workingStr, WHITESPACE)) != NULL &&
+            tokenCount < MAX_NUM_ARGUMENTS) {
 
-        token[tokenCount] = strndup(argPtr, MAX_COMMAND_SIZE);
-
-        if (strlen(token[tokenCount]) == 0) {
-            token[tokenCount] = NULL;
+        if (strlen(argPtr)) {
+            token[tokenCount] = strndup(argPtr, MAX_COMMAND_SIZE);
+            tokenCount++;
         }
-        tokenCount++;
     }
 
-    free(workingStr);
+    free(workingRoot);
     return tokenCount;
 }
 
@@ -205,6 +198,7 @@ int execute(char ** params) {
         }
         if (execErr) {
             printf("%s: Command not found.\n", params[0]);
+            /* child exits */
             exit(1);
         } 
     }
@@ -228,13 +222,21 @@ void handleSIGTSTP(int sig) {
         BUILT-IN FUNCTIONS
 ******/
 
-void addHistoryNode(char * cmd) {
+// fix the ordering in this function... if list is full first *///
+void addHistoryNode(char * cmd, char ** cmdArray) {
     if (cmd[0] == '!') return;
 
     HistoryNode * newNode = malloc(sizeof(HistoryNode));
     newNode->next = NULL;
     newNode->command = strdup(cmd);
-    
+    newNode->commandTokens = malloc(MAX_NUM_ARGUMENTS);
+    /* memset(newNode->commandTokens, '\0', MAX_NUM_ARGUMENTS); */
+
+    int i;
+    for (i = 0; i < MAX_NUM_ARGUMENTS && cmdArray[i]; i++) {
+        newNode->commandTokens[i] = strdup(cmdArray[i]);
+    }
+
     HistoryNode * temp = historyHead;
     if (!temp) {
         historyHead = newNode;
@@ -253,6 +255,9 @@ void addHistoryNode(char * cmd) {
         temp = historyHead->next;
 
         free(historyHead->command);
+        for (i = 0; i < MAX_NUM_ARGUMENTS && historyHead->commandTokens[i]; i++) {
+            free(historyHead->commandTokens[i]);
+        }
         free(historyHead);
         
         historyHead = temp;
@@ -261,11 +266,18 @@ void addHistoryNode(char * cmd) {
 
 void cleanHistoryList() {
     HistoryNode * temp = historyHead;
+    /* int i; */
 
     while (temp) {
         temp = temp->next;
 
         free(historyHead->command);
+
+        /* for (i = 0; i < MAX_NUM_ARGUMENTS && historyHead->commandTokens[i] != NULL; i++) { */
+            /* free(historyHead->commandTokens[i]); */
+        /* } */
+
+        free(historyHead->commandTokens);
         free(historyHead);
 
         historyHead = temp;
@@ -361,20 +373,21 @@ int showpids(char ** params) {
 }
 
 int repeatCommand(char ** params) {
-    int cmdNum = atoi(params[0]);
+    int cmdNum = atoi(params[0] + 1);
 
     HistoryNode * temp = historyHead;
     int count = 1;
     while (temp && count < cmdNum) {
         temp = temp->next;
+        count++;
     }
 
     if (!temp) {
         printf("msh: !%d: event not found", cmdNum);
     }
 
-    addHistoryNode(temp->command);
-
+    addHistoryNode(temp->command, temp->commandTokens);
+    execute(temp->commandTokens);
 
     return 1;
 }
