@@ -61,7 +61,8 @@ int parseInput(char *, char **);
 int execute(char **);
 
 /* signal handling functions */
-void handleSIGTSTP(int sig);
+void initHandlers();
+void handleSignal(int sig);
 
 /* built-in functions */
 int cd(char **);
@@ -77,11 +78,7 @@ int main() {
     char ** token = malloc(MAX_NUM_ARGUMENTS);
     int status;
 
-    /* init handler for ctrl-z */
-    struct sigaction tstop;
-    memset(&tstop, '\0', sizeof(tstop));
-    tstop.sa_handler = &handleSIGTSTP;
-    sigaction(SIGTSTP, &tstop, NULL);
+    initHandlers();
 
     do {
         printf("msh> ");
@@ -219,9 +216,25 @@ int run() {
         SIGNAL HANDLING FUNCTIONS
 ******/
 
-void handleSIGTSTP(int sig) {
-    printf("Hello %d\n", sig);
-    fflush(stdin);
+void initHandlers() {
+    /* init handler for ctrl-z */
+    struct sigaction tstop;
+    memset(&tstop, '\0', sizeof(tstop));
+    tstop.sa_handler = &handleSignal;
+    sigaction(SIGTSTP, &tstop, NULL);
+
+    struct sigaction interrupt;
+    memset(&interrupt, '\0', sizeof(interrupt));
+    interrupt.sa_handler = &handleSignal;
+    sigaction(SIGINT, &interrupt, NULL);
+}
+
+void handleSignal(int sig) {
+    if (sig == SIGINT) {
+        printf("Do Nothing...");
+    } else {
+        printf("Hello %d\n", sig);
+    }
 }
 
 /******
