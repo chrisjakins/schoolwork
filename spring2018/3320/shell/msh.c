@@ -17,7 +17,7 @@
 #define MAX_COMMAND_SIZE 255
 #define MAX_NUM_ARGUMENTS 11
 
-char * stringBuiltin[] = {"cd", "history", "showpids"};
+char * stringBuiltin[] = {"cd", "history", "showpids", "bg"};
 
 #define PATH_NUM 4
 char paths[PATH_NUM][MAX_COMMAND_SIZE] = {"/bin/", "/usr/bin/", "/usr/local/bin/", "./"};
@@ -62,13 +62,14 @@ int execute(char **);
 
 /* signal handling functions */
 void initHandlers();
-void handleSignal(int sig);
+void handleSignal(int sig, siginfo_t *, void * context);
 
 /* built-in functions */
 int cd(char **);
 int history(char **);
 int showpids(char **);
 int repeatCommand(char **);
+int bg(char **);
 
 /*******
         MAIN
@@ -146,7 +147,7 @@ int parseInput(char * input, char ** token) {
             tokenCount < MAX_NUM_ARGUMENTS) {
 
         if (*argPtr && strlen(argPtr)) {
-            token[tokenCount] = strndup(argPtr, MAX_COMMAND_SIZE);
+            token[tokenCount] = strdup(argPtr);
             tokenCount++;
         }
     }
@@ -155,6 +156,13 @@ int parseInput(char * input, char ** token) {
     return tokenCount;
 }
 
+/*
+    params -> array of strings with each parameter taken from the command line
+
+    this function will run the appropriate builtin, if that is what was typed
+    or will spawn a child process with fork and use exec() to run the correct
+    program
+*/
 int execute(char ** params) {
     int status, execErr = 0;
 
@@ -176,6 +184,10 @@ int execute(char ** params) {
 
             execErr = showpids(params);
 
+        } else if (strcmp(params[0], stringBuiltin[3]) == 0) {
+
+            execErr = bg(params);
+
         } else if (params[0][0] == '!') {
 
             execErr = repeatCommand(params);
@@ -185,7 +197,7 @@ int execute(char ** params) {
             pid_t pid = fork();
 
             if (pid != 0) {
-
+                printf("Child pid: %d\n", pid);
                 addPidNode(pid);
                 waitpid(pid, &status, 0);
 
@@ -200,15 +212,11 @@ int execute(char ** params) {
             }
             if (execErr) {
                 printf("%s: Command not found.\n", params[0]);
-            /* child exits */
-            exit(1);
+                /* child exits */
+                exit(1);
             } 
         }
     }
-    return 1;
-}
-
-int run() {
     return 1;
 }
 
@@ -216,28 +224,44 @@ int run() {
         SIGNAL HANDLING FUNCTIONS
 ******/
 
-void initHandlers() {
-    /* init handler for ctrl-z */
-    struct sigaction tstop;
-    memset(&tstop, '\0', sizeof(tstop));
-    tstop.sa_handler = &handleSignal;
-    sigaction(SIGTSTP, &tstop, NULL);
+/*
+    this function initializes the signal handlers for the signals needed
+    to be caught by this shell, uses 'void handleSignal()' as the signal
+    handler
 
-    struct sigaction interrupt;
-    memset(&interrupt, '\0', sizeof(interrupt));
-    interrupt.sa_handler = &handleSignal;
-    sigaction(SIGINT, &interrupt, NULL);
+    To add more : 
+    sigaction(NEWSIGNAL, &act, NULL);
+*/
+void initHandlers() {
+    struct sigaction act;
+    memset(&act, '\0', sizeof(act));
+    act.sa_sigaction = &handleSignal;
+    act.sa_flags = SA_SIGINFO;
+    sigaction(SIGTSTP, &act, NULL);
+    sigaction(SIGINT, &act, NULL);
 }
 
-void handleSignal(int sig) {
+/*
+    sig -> integer representing the signal sent
+        run kill -l from the command line to see a list of all signals available
+
+    processInfo -> info from the process that sent the signal, might be useful
+        when implementing bg
+
+    this function catches SIGINT and SIGSTP and currently does nothing with them
+
+    To add more :
+    case SIGNALTYPE:
+        process();
+        break;
+*/
+void handleSignal(int sig, siginfo_t * processInfo, void * context) {
     switch (sig) {
         case SIGINT:
-            // need a way to get child process' pid here
-            //kill(getpid(), SIGINT);
-            //printf("Do nothing...");
+            // do nothing in parent, kills childs spawned by exec()
             break;
         case SIGTSTP:
-            printf("Suspend process");
+            //printf("Suspend process");
             break;
         default:
             printf("Other signal caught...");
@@ -245,10 +269,19 @@ void handleSignal(int sig) {
 }
 
 /******
-        BUILT-IN FUNCTIONS
+        DATA STRUCTURE MAINTAINENCE
 ******/
 
-// fix the ordering in this function... if list is full first *///
+/*
+    cmd -> a full string representing the command that was typed
+
+    cmdArray -> a tokenized array of the strings from 'cmd'
+
+    This function stores the above parameters into a linked list of nodes
+    This linked list is used by the history command to know what commands have
+    been run in the past. This function also takes care of maintaining the size
+    of the linked list (only HISTORY_NUM allowable nodes at any given time)
+*/
 void addHistoryNode(char * cmd, char ** cmdArray) {
     if (cmd[0] == '!') return;
 
@@ -290,9 +323,13 @@ void addHistoryNode(char * cmd, char ** cmdArray) {
     }
 }
 
+/* 
+    This function frees up (very sloppily) all the memory allocated to the
+    history linked list
+*/
 void cleanHistoryList() {
     HistoryNode * temp = historyHead;
-    int i;
+    //int i;
 
     while (temp) {
         temp = temp->next;
@@ -310,6 +347,12 @@ void cleanHistoryList() {
     }
 }
 
+/*
+    pid -> a process ID to store into the linked list
+
+    This function maintains the linked list of pids used by the showpids
+    command. No more than SHOWPIDS_NUM can be present at any time.
+*/
 void addPidNode(pid_t pid) {
     PidNode * newNode = malloc(sizeof(PidNode));
     newNode->pid = pid;
@@ -338,6 +381,9 @@ void addPidNode(pid_t pid) {
     }
 }
 
+/*
+    This function frees up all memory associated with the PID linked list 
+*/
 void cleanPidList() {
     PidNode * temp = pidHead;
 
@@ -354,6 +400,13 @@ void cleanPidList() {
         BUILT-IN FUNCTIONS
 ******/
 
+/*
+    params -> the command run from the command line in tokenized form
+
+    This function changes the current working directory to the specified path
+    I later realized that I did not need a separate case for '..', but I was
+    proud of that code, so I left it in
+*/
 int cd(char ** params) {
     char cwd[1024];
 
@@ -377,6 +430,11 @@ int cd(char ** params) {
     return 1;
 }
 
+/*
+    params -> not used here, but kept for consistency
+
+    this function outputs all entries in the history linked list
+*/
 int history(char ** params) {
     HistoryNode * temp = historyHead;
 
@@ -387,6 +445,11 @@ int history(char ** params) {
     return 1;
 }
 
+/*
+    params -> not used here, but kept for consistency
+
+    this function outputs all entries in the PID linked list
+*/
 int showpids(char ** params) {
     PidNode * temp = pidHead;
 
@@ -398,6 +461,12 @@ int showpids(char ** params) {
     return 1;
 }
 
+/*
+    params -> the tokenized list of commands/argument entered from the command line
+    
+    This function takes the integer from the command and reruns the corresponding
+    command from the history linked list
+*/
 int repeatCommand(char ** params) {
     int cmdNum = atoi(params[0] + 1);
 
@@ -415,5 +484,15 @@ int repeatCommand(char ** params) {
     addHistoryNode(temp->command, temp->commandTokens);
     execute(temp->commandTokens);
 
+    return 1;
+}
+
+/*
+    params -> not used here
+
+    This function is supposed to resume the currently suspended process
+*/
+int bg(char ** params) {
+    // resume suspended process here
     return 1;
 }
