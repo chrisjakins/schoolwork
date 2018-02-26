@@ -230,10 +230,17 @@ void initHandlers() {
 }
 
 void handleSignal(int sig) {
-    if (sig == SIGINT) {
-        printf("Do Nothing...");
-    } else {
-        printf("Hello %d\n", sig);
+    switch (sig) {
+        case SIGINT:
+            // need a way to get child process' pid here
+            //kill(getpid(), SIGINT);
+            //printf("Do nothing...");
+            break;
+        case SIGTSTP:
+            printf("Suspend process");
+            break;
+        default:
+            printf("Other signal caught...");
     }
 }
 
