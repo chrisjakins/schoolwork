@@ -31,6 +31,7 @@ char paths[PATH_NUM][MAX_COMMAND_SIZE] = {"/bin/", "/usr/bin/", "/usr/local/bin/
 
 typedef struct HistoryNode {
     struct HistoryNode * next;
+    char ** commandTokens;
     char * command;
 } HistoryNode;
 
@@ -48,7 +49,7 @@ PidNode * pidHead = NULL;
 ******/
 
 /* data structure maintainence functions */
-void addHistoryNode(char *);
+void addHistoryNode(char *, char **);
 void cleanHistoryList();
 
 void addPidNode(pid_t);
@@ -112,7 +113,6 @@ int readInput(char ** token) {
 
     while (!fgets(cmdStr, MAX_COMMAND_SIZE, stdin)) ;
 
-    addHistoryNode(cmdStr);
 /*
     int tokenCount = 0;
     char * argPtr;
@@ -134,7 +134,11 @@ int readInput(char ** token) {
     free(workingStr);
     return tokenCount; */
 
-    return parseInput(cmdStr, token);
+    int tokenCount = parseInput(cmdStr, token);
+    addHistoryNode(cmdStr, token);
+
+    free(cmdStr);
+    return tokenCount;
 }
 
 int parseInput(char * input, char ** token) {
@@ -153,7 +157,6 @@ int parseInput(char * input, char ** token) {
         tokenCount++;
     }
 
-    free(input);
     free(workingStr);
     return tokenCount;
 }
