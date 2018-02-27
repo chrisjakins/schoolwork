@@ -5,6 +5,7 @@ sampleRate = 2000
 
 
 def lowpass() :
+    cutoff = 50
     print("hello")
 
 
