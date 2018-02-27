@@ -15,8 +15,7 @@ def lowpass(signal) :
             filterWeights.append(
                 np.sin(2 * np.pi * normCutoff * (n - M / 2)) / (np.pi * (n - M / 2))
             )
-    print(filterWeights)
-
+    return np.convolve(signal, filterWeights)
 
 
 def highpass() :
@@ -30,5 +29,14 @@ filename = "data-filtering.csv"
 sampleRate = 2000
 
 data = np.genfromtxt(filename, delimiter=',')
+time = np.arange(0, 2020)
 
 lowpassData = lowpass(data)
+
+plt.subplot(3, 1, 1)
+plt.plot(time, lowpassData)
+
+
+
+plt.tight_layout()
+plt.show()
