@@ -22,6 +22,9 @@ char * stringBuiltin[] = {"cd", "history", "showpids", "bg"};
 #define PATH_NUM 4
 char paths[PATH_NUM][MAX_COMMAND_SIZE] = {"/bin/", "/usr/bin/", "/usr/local/bin/", "./"};
 
+pid_t currentProcess;
+pid_t suspendedProcess;
+
 /******
         DATA STRUCTURES
 ******/
@@ -197,7 +200,7 @@ int execute(char ** params) {
             pid_t pid = fork();
 
             if (pid != 0) {
-                printf("Child pid: %d\n", pid);
+                currentProcess = pid;
                 addPidNode(pid);
                 waitpid(pid, &status, 0);
 
@@ -259,9 +262,12 @@ void handleSignal(int sig, siginfo_t * processInfo, void * context) {
     switch (sig) {
         case SIGINT:
             // do nothing in parent, kills childs spawned by exec()
+            kill(currentProcess, SIGINT);
             break;
         case SIGTSTP:
             //printf("Suspend process");
+            suspendedProcess = currentProcess;
+            kill(currentProcess, SIGTSTP);
             break;
         default:
             printf("Other signal caught...");
@@ -494,5 +500,6 @@ int repeatCommand(char ** params) {
 */
 int bg(char ** params) {
     // resume suspended process here
+    kill(suspendedProcess, SIGCONT);
     return 1;
 }
