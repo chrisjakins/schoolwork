@@ -79,7 +79,7 @@ int bg(char **);
 *******/
 
 int main() {
-    char ** token = malloc(MAX_NUM_ARGUMENTS);
+    char ** token = malloc(sizeof(char *) * MAX_NUM_ARGUMENTS);
     int status, i;
 
     initHandlers();
@@ -96,7 +96,7 @@ int main() {
     for (i = 0; i < MAX_NUM_ARGUMENTS && token[i]; i++) {
         free(token[i]);
     }
-    //free(token);
+    free(token);
     cleanHistoryList();
     cleanPidList();
     return 0;
@@ -294,7 +294,7 @@ void addHistoryNode(char * cmd, char ** cmdArray) {
     HistoryNode * newNode = malloc(sizeof(HistoryNode));
     newNode->next = NULL;
     newNode->command = strdup(cmd);
-    newNode->commandTokens = malloc(MAX_NUM_ARGUMENTS);
+    newNode->commandTokens = malloc(sizeof(char *) * MAX_NUM_ARGUMENTS);
     /* memset(newNode->commandTokens, '\0', MAX_NUM_ARGUMENTS); */
 
     int i;
