@@ -1,3 +1,9 @@
+"""
+    Chris Jakins
+    1000802309
+    HW4 CSE3313
+    2/28
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 
