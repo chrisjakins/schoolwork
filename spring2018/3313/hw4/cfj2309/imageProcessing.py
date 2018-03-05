@@ -25,30 +25,30 @@ hpFilter = np.array([1, -1])
 def imageProcessing(filename) :
     img = mpimg.imread(filename)
 
-    plt.imshow(img)
+    plt.imshow(img, cmap = "gray")
     plt.title("Original image : %s" % (filename))
     plt.show()
     
-    plt.imshow(lowpassFilter(img))
+    plt.imshow(lowpassFilter(img), cmap = "gray")
     plt.title("Applying lowpass filter : %s" % (filename))
     plt.show()
 
-    plt.imshow(highpassFilter(img))
+    plt.imshow(highpassFilter(img), cmap = "gray")
     plt.title("Applying highpass filter : %s" % (filename))
     plt.show()
 
 def noiseRemoval(filename) :
     img = mpimg.imread(filename)
 
-    plt.imshow(img)
+    plt.imshow(img, cmap = "gray")
     plt.title("Original image : %s" % (filename))
     plt.show()
 
-    plt.imshow(lowpassFilter(img))
+    plt.imshow(lowpassFilter(img), cmap = "gray")
     plt.title("Applying lowpass filter : %s" % (filename))
     plt.show()
 
-    plt.imshow(medianFilter(img))
+    plt.imshow(medianFilter(img), cmap = "gray")
     plt.title("Applying median filter : %s" % (filename))
     plt.show()
 

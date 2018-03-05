@@ -17,8 +17,12 @@ numSamples = 4000
 filterLength = 64
 
 frequencyBank = np.array([697, 770, 852, 941, 1209, 1336, 1477])
+phoneDigits = [[1,   2,  3],
+               [4,   5,  6],
+               [7,   8,  9],
+               ['*', 0, '#']]
+
 filterBank = []
-outputs = []
 
 #   FUNCTIONS
 
@@ -31,8 +35,15 @@ def setupFilters() :
             )
         filterBank.append(interim)
 
+def printDigit(data) :
+    # here I get the index values of the highest two elements of the input
+    # I make the assumption (due to the my choice of data structure) that
+    # one of the highest elements will be in the first four data values, and
+    # the other will be in last 3
+    ind1 = np.argmax(data[0:4])
+    ind2 = np.argmax(data[4:])
 
-
+    print(phoneDigits[ind1][ind2], end = "")
 
 #
 #   EFFECTIVE MAIN
@@ -41,13 +52,19 @@ def setupFilters() :
 data = np.genfromtxt(filename, delimiter = ',')
 setupFilters()
 
-for f in filterBank :
-    outputs.append(np.convolve(f, data))
+for i in range(0, data.shape[0] // numSamples) :
+    filterOuts = []
+    for f in filterBank :
+        filterOuts.append(np.convolve(f, data[i * 4000: 4000 + i * 4000]))
 
-print(outputs)
+    filterOuts = np.asarray(filterOuts)
+    filterOuts = [np.mean(x ** 2) for x in filterOuts]
 
-"""
+    printDigit(np.asarray(filterOuts))
+
+
+print()
+
 x, y = freqz(filterBank[0], 1) 
 plt.plot(x, abs(y))
 plt.show()
-"""
