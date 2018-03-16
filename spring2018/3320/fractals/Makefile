@@ -4,6 +4,12 @@ all: mandel
 mandel: mandel.o bitmap.o
 	gcc mandel.o bitmap.o -o mandel -lpthread
 
+mseries: mseries.o bitmap.o
+	gcc mseries.o bitmap.o -o mseries -lpthread
+
+mseries.o: mandelseries.c
+	gcc -Wall -g -c mandelseries.c -o mseries.o
+
 mandel.o: mandel.c
 	gcc -Wall -g -c mandel.c -o mandel.o
 
@@ -11,4 +17,4 @@ bitmap.o: bitmap.c
 	gcc -Wall -g -c bitmap.c -o bitmap.o
 
 clean:
-	rm -f mandel.o bitmap.o mandel
+	rm -f mandel.o bitmap.o mseries.o mseries mandel
