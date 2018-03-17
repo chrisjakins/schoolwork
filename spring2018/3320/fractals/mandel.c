@@ -136,16 +136,16 @@ int main( int argc, char *argv[] )
             thread_args[i].low_row = low_row;
 
             if (i == num_threads - 1)
-                thread_args[i].high_row = image_height - 1;
+                thread_args[i].high_row = image_height;
             else 
-                thread_args[i].high_row = high_row - 1;
+                thread_args[i].high_row = high_row;
 
             low_row += offset;
             high_row += offset;
         } else {
             // is divisible
             thread_args[i].low_row = low_row;
-            thread_args[i].high_row = high_row - 1;
+            thread_args[i].high_row = high_row;
             low_row += offset;
             high_row += offset;
         }
@@ -206,8 +206,8 @@ void * compute_image_threaded(void * void_vals)
 		for(i = 0; i < width; i++) {
 
 			// Determine the point in x,y space for that pixel.
-			double x = vals->xmin + i * (vals->xmax-vals->xmin) / width;
-			double y = vals->ymin + j * (vals->ymax-vals->ymin) / height;
+			double x = vals->xmin + i * (vals->xmax - vals->xmin) / width;
+			double y = vals->ymin + j * (vals->ymax - vals->ymin) / height;
 
 			// Compute the iterations at that point.
 			int iters = iterations_at_point(x, y, vals->max);
