@@ -1,3 +1,15 @@
+"""
+    Chris Jakins
+    CSE3313 HW6
+    3/21
+
+    Code is not producing the correct output currently
+
+    I am able to plot the original frequency data, modify it correctly and
+    plot that, but producing the ifft and the output wav file seems to be messing
+    up somewhere. After messing around with the samplerate, I believe it has something
+    to do with that.
+"""
 import numpy as np
 import soundfile as sf
 import matplotlib.pyplot as plt
@@ -7,30 +19,19 @@ outfile = "cleanMusic.wav"
 
 data, sampleRate = sf.read(infile)
 
-freqData = abs(np.fft.fft(data))
+freqData = np.fft.fft(data)
 numSamples = freqData.shape[0]
 x = np.arange(0, numSamples)
-"""
-plt.plot(x, freqData)
+
+plt.plot(x, abs(freqData))
 plt.show()
-"""
+
 midIndex = numSamples // 2
 offset = midIndex - 30000 # hardcoded from sample set
-print(numSamples)
-print(freqData[29999])
-print(freqData[47825])
-print(midIndex - offset + 1)
-print(midIndex + offset + 1)
 
-#freqData[midIndex - offset: midIndex + offset + 1] = 0
-freqData[29999 : 47826] = 0
-print(freqData[29999])
-print(freqData[47825])
+freqData[midIndex - offset: midIndex + offset + 1] = 0
 
-print(midIndex)
-print(freqData[midIndex - offset + 1])
-
-plt.plot(x, freqData)
+plt.plot(x, abs(freqData))
 plt.show()
 
 newData = np.fft.ifft(freqData)
