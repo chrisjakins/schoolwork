@@ -1,4 +1,3 @@
-
 #include "bitmap.h"
 
 #include <unistd.h>
@@ -8,6 +7,7 @@
 #include <math.h>
 #include <errno.h>
 #include <string.h>
+#include <time.h>
 
 int iteration_to_color( int i, int max );
 int iterations_at_point( double x, double y, int max );
@@ -53,6 +53,10 @@ int main( int argc, char *argv[] )
     pid_t pid = 1;
 
     double offset = (current_scale - final_scale) / total_proc;
+
+    // START TIMING
+    struct timespec start;
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     for (proc_count = 0; proc_count <= 50; proc_count++) {
         if (proc_count == 0) {
@@ -102,28 +106,12 @@ int main( int argc, char *argv[] )
         }
     }
 
+    struct timespec finish;
+    clock_gettime(CLOCK_MONOTONIC, &finish);
 
+    printf("time taken: %ld\n", (finish.tv_sec * 1000000000 + finish.tv_nsec) -
+                                (start.tv_sec * 1000000000 + start.tv_nsec));
 
-
-/*
-	// Display the configuration of the image.
-	printf("mandel: x=%lf y=%lf scale=%lf max=%d outfile=%s\n",xcenter,ycenter,scale,max,outfile);
-
-	// Create a bitmap of the appropriate size.
-	struct bitmap *bm = bitmap_create(image_width,image_height);
-
-	// Fill it with a dark blue, for debugging
-	bitmap_reset(bm,MAKE_RGBA(0,0,255,0));
-
-	// Compute the Mandelbrot image
-	compute_image(bm,xcenter-scale,xcenter+scale,ycenter-scale,ycenter+scale,max);
-
-	// Save the image in the stated file.
-	if(!bitmap_save(bm,outfile)) {
-		fprintf(stderr,"mandel: couldn't write to %s: %s\n",outfile,strerror(errno));
-		return 1;
-	}
-*/
 	return 0;
 }
 

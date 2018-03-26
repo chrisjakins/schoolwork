@@ -121,7 +121,7 @@ int main( int argc, char *argv[] )
     int i = 0;
     int offset = image_height / num_threads;
     low_row = 0;
-    high_row /= num_threads;
+    high_row = image_height / num_threads;
     for (i = 0; i < num_threads; i++) {
         thread_args[i].bm = bm;
         thread_args[i].xmin = xcenter - scale;
@@ -151,13 +151,17 @@ int main( int argc, char *argv[] )
         }
     }
 
+    // start timing
+    struct timespec start;
+    clock_gettime(CLOCK_MONOTONIC, &start);
+
 	// Compute the Mandelbrot image
     pthread_t row_threads[num_threads];
     for (i = 0; i < num_threads; i++) {
 
-        printf("thread %d: %f %f %f %f %d %d %d\n", i, thread_args[i].xmin,
-                    thread_args[i].xmax, thread_args[i].ymin, thread_args[i].ymax,
-                    thread_args[i].max, thread_args[i].low_row, thread_args[i].high_row);
+        //printf("thread %d: %f %f %f %f %d %d %d\n", i, thread_args[i].xmin,
+        //            thread_args[i].xmax, thread_args[i].ymin, thread_args[i].ymax,
+        //            thread_args[i].max, thread_args[i].low_row, thread_args[i].high_row);
 
         if (pthread_create(&row_threads[i], NULL, compute_image_threaded, &thread_args[i])) {
             printf("Error creating thread\n");
@@ -182,6 +186,12 @@ int main( int argc, char *argv[] )
 		fprintf(stderr, "mandel: couldn't write to %s: %s\n", outfile, strerror(errno));
 		return 1;
 	}
+
+    struct timespec finish;
+    clock_gettime(CLOCK_MONOTONIC, &finish);
+
+    printf("time taken: %ld\n", (finish.tv_sec * 1000000000 + finish.tv_nsec) -
+                                (start.tv_sec * 1000000000 + start.tv_nsec));
 
 	return 0;
 }
@@ -216,6 +226,8 @@ void * compute_image_threaded(void * void_vals)
 			bitmap_set(vals->bm, i, j, iters);
 		}
 	}
+
+    return NULL;
 }
 
 /*
