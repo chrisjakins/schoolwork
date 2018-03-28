@@ -36,10 +36,10 @@ def convertToBits( values ) :
             bits.append( 1 )
     return bits
 
-def binaryListToString( list ) :
+def binaryListToString( inList ) :
     output = ""
-    for x in range(0, int( len(list) / 8 )) :
-        bitPattern = list[8 * x : 8 * x + 8]
+    for x in range(0, int( len(inList) / 8 )) :
+        bitPattern = inList[8 * x : 8 * x + 8]
         strBits = ''.join(str(a) for a in bitPattern)
         output += chr( int( strBits, base = 2 ) )
     return output
