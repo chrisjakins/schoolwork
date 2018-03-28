@@ -4,12 +4,8 @@
     3/21
 
     Code is not producing the correct output currently
-
-    I am able to plot the original frequency data, modify it correctly and
-    plot that, but producing the ifft and the output wav file seems to be messing
-    up somewhere. After messing around with the samplerate, I believe it has something
-    to do with that.
 """
+
 import numpy as np
 import soundfile as sf
 import matplotlib.pyplot as plt
