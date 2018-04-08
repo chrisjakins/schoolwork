@@ -3,12 +3,15 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdint.h>
+#include <ctype.h>
 
 #define MAX_NUM_ARGUMENTS 2
 #define MAX_COMMAND_SIZE 64
 #define WHITESPACE " \n\t"
 
 FILE * currentFP = NULL;
+int currentCluster;
+int rootCluster;
 
 struct __attribute__((__packed__)) DirectoryEntry {
     char DIR_Name[11];
@@ -67,6 +70,10 @@ int main() {
         free(token[i]);
     }
     free(token);
+
+    if (currentFP) {
+        fclose(currentFP);
+    }
     return 0;
 }
 
@@ -190,6 +197,13 @@ int open(char ** params) {
     fread(&VolumeLabel, 11, 1, currentFP);
     VolumeLabel[11] = 0;
 
+    // populate directory info with root
+    rootCluster = (NumFATS * FATSz32 * BytesPerSector) + (RsvdSectorCount * BytesPerSector);
+    fseek(currentFP, rootCluster, SEEK_SET);
+    fread(dir, 32, 16, currentFP);
+
+    // keep track of where we are
+    currentCluster = rootCluster;
     return 1;
 }
 
@@ -211,7 +225,7 @@ int info(char ** params) {
     }
 
     printf("Bytes per sector: 0x%x %d\n", BytesPerSector, BytesPerSector);
-    printf("Secotrs Per Cluster: 0x%x %d\n", SectorsPerCluster, SectorsPerCluster);
+    printf("Sectors Per Cluster: 0x%x %d\n", SectorsPerCluster, SectorsPerCluster);
     printf("Reserved Sector Count: 0x%x %d\n", RsvdSectorCount, RsvdSectorCount);
     printf("Number of FATs: 0x%x %d\n", NumFATS, NumFATS);
     printf("FAT Size 32: 0x%x %d\n", FATSz32, FATSz32);
@@ -224,22 +238,121 @@ int ls(char ** params) {
         return 1;
     }
 
-    int root = (NumFATS * FATSz32 * BytesPerSector) + (RsvdSectorCount * BytesPerSector);
-    fseek(currentFP, root, SEEK_SET);
-    fread(dir, 32, 16, currentFP);
+    char buff[12];
+    memcpy(buff, "           ", 11);
+    buff[11] = 0;
 
-    // debug
-    printf("%s\n", dir[0].DIR_Name);
+    printf(".\n..\n");
+
+    for (int i = 0; i < 16; i++) {
+        if (dir[i].DIR_Attr == 1 || dir[i].DIR_Attr == 16 || dir[i].DIR_Attr == 32) {
+            memcpy(buff, dir[i].DIR_Name, 11);
+            printf("%s\n",  buff);
+        }
+    }
 
     return 1;
 }
 
+/*
+    The way strings are stored in the image file
+    0   1   2   3   4   5   6   7   8   9   10  11
+    (chars of filename or spaces)   (extension) \0
+    all uppercase
+
+    assumes that extensions are 3 chars
+
+    params should (hopefully) only have one file/directory name
+    will break if there is params[2], params[3], etc
+*/
+int stat(char ** params) {
+    if (!currentFP) {
+        printf("Error: File system image must be opened first.\n");
+        return 1;
+    }
+
+    int i;
+    char buff[12];
+    memcpy(buff, "           ", 11);
+    buff[11] = 0;
+
+    // copy filename
+    for (i = 0; i < 8 && params[1][i] != '.' && params[1][i] != 0; i++) {
+            buff[i] = toupper(params[1][i]);
+    }
+
+    // copy extension
+    if (params[1][i] == '.') {
+        int length = strlen(params[1]);
+        buff[8] = toupper(params[1][length - 3]);
+        buff[9] = toupper(params[1][length - 2]);
+        buff[10] = toupper(params[1][length - 1]);
+    }
+
+    char temp[12];
+    for (i = 0; i < 16; i++) {
+        if (dir[i].DIR_Attr == 1 || dir[i].DIR_Attr == 16 || dir[i].DIR_Attr == 32) {
+            memcpy(temp, dir[i].DIR_Name, 11);
+            temp[11] = 0;
+            if (strcmp(buff, temp) == 0) {
+                printf("Name: %s\nAttribute: %d\n", temp, dir[i].DIR_Attr);
+                printf("First Cluster High: %d\nFirst Cluster Low: %d\n",
+                        dir[i].DIR_FirstClusterHigh, dir[i].DIR_FirstClusterLow);
+                printf("File Size: %d\n", dir[i].DIR_Attr == 16 ? 0 : 16);
+            }
+        }
+    }
+
+    return 1;
+}
+
+/*
+    Assume it's stored in params[1] and ignore the rest
+*/
 int cd(char ** params) {
     if (!currentFP) {
         printf("Error: File system image must be opened first.\n");
         return 1;
     }
-    printf("%s\n", params[1]);
+
+    char buff[12];
+    memcpy(buff, "           ", 11);
+    buff[11] = 0;
+
+    // copy filename
+    int i;
+    for (i = 0; i < 8 && params[1][i] != '.' && params[1][i] != 0; i++) {
+            buff[i] = toupper(params[1][i]);
+    }
+
+    int newCluster;
+    FILE * tempFP = currentFP; // storing current directory level
+
+    fseek(currentFP, currentCluster, SEEK_SET);
+    fread(dir, 32, 16, currentFP);
+
+    char temp[12];
+
+    int found = 0;
+    for (int i = 0; i < 16; i++) {
+        if (dir[i].DIR_Attr == 16) {
+            memcpy(temp, dir[i].DIR_Name, 11);
+            if (strcmp(buff, temp) == 0) {
+                newCluster = dir[i].DIR_FirstClusterLow;
+                found = 1;
+            }
+        }
+    }
+
+    if (found) {
+        int newDirectory = (newCluster - 2) * BytesPerSector + rootCluster;
+        fseek(currentFP, newDirectory, SEEK_SET);
+        fread(dir, 32, 16, currentFP);
+        currentCluster = newDirectory;
+    } else {
+        printf("cd: %s: No such file or directory\n", params[1]);
+    }
+
     return 1;
 }
 
