@@ -12,7 +12,6 @@
 #include <string.h>
 #include <signal.h>
 #include <sys/wait.h>
-
 #define WHITESPACE " \t\n"
 #define MAX_COMMAND_SIZE 255
 #define MAX_NUM_ARGUMENTS 11
