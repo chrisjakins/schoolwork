@@ -247,6 +247,9 @@ int ls(char ** params) {
     for (int i = 0; i < 16; i++) {
         if (dir[i].DIR_Attr == 1 || dir[i].DIR_Attr == 16 || dir[i].DIR_Attr == 32) {
             memcpy(buff, dir[i].DIR_Name, 11);
+            for (int j = 0; j < 12; j++) {
+                printf("%d ", buff[j]);
+            }
             printf("%s\n",  buff);
         }
     }
@@ -315,29 +318,30 @@ int cd(char ** params) {
         return 1;
     }
 
-    char buff[12];
-    memcpy(buff, "           ", 11);
-    buff[11] = 0;
+    char filenameArg[12];
+    memcpy(filenameArg, "           ", 11);
+    filenameArg[11] = 0;
 
     // copy filename
     int i;
     for (i = 0; i < 8 && params[1][i] != '.' && params[1][i] != 0; i++) {
-            buff[i] = toupper(params[1][i]);
+            filenameArg[i] = toupper(params[1][i]);
     }
 
     int newCluster;
     FILE * tempFP = currentFP; // storing current directory level
 
     fseek(currentFP, currentCluster, SEEK_SET);
-    fread(dir, 32, 16, currentFP);
 
     char temp[12];
+    memcpy(temp, "           ", 11);
+    temp[11] = 0;
 
     int found = 0;
-    for (int i = 0; i < 16; i++) {
+    for (i = 0; i < 16 && !found; i++) {
         if (dir[i].DIR_Attr == 16) {
             memcpy(temp, dir[i].DIR_Name, 11);
-            if (strcmp(buff, temp) == 0) {
+            if (strcmp(filenameArg, temp) == 0) {
                 newCluster = dir[i].DIR_FirstClusterLow;
                 found = 1;
             }
@@ -346,8 +350,11 @@ int cd(char ** params) {
 
     if (found) {
         int newDirectory = (newCluster - 2) * BytesPerSector + rootCluster;
+        printf("%d\n", newDirectory);
         fseek(currentFP, newDirectory, SEEK_SET);
-        fread(dir, 32, 16, currentFP);
+        for (i = 0; i < 16; i++) {
+            fread(&dir[i], 32, 1, currentFP);
+        }
         currentCluster = newDirectory;
     } else {
         printf("cd: %s: No such file or directory\n", params[1]);
