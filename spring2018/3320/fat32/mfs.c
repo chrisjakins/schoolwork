@@ -51,6 +51,8 @@ int my_read(char **);
 int readInput(char **);
 int execute(char **);
 int parseInput(char *, char **);
+int LBAToOffset(int32_t);
+int16_t NextLB(uint32_t);
 
 int main() {
 
@@ -349,7 +351,7 @@ int cd(char ** params) {
     }
 
     if (found) {
-        int newDirectory = (newCluster - 2) * BytesPerSector + rootCluster;
+        int newDirectory = ((newCluster - 2) * BytesPerSector) + rootCluster;
         printf("%d\n", newDirectory);
         fseek(currentFP, newDirectory, SEEK_SET);
         for (i = 0; i < 16; i++) {
@@ -387,11 +389,85 @@ int get(char ** params) {
     return 1;
 }
 
+/*
+    Assumes all input parameters are present and valid
+
+    read <filename> <position> <# bytes>
+*/
 int my_read(char ** params) {
     if (!currentFP) {
         printf("Error: File system image must be opened first.\n");
         return 1;
     }
-    printf("%s\n", params[1]);
+
+    int numBytes = atoi(params[3]), dirToRead = -1, i;
+    char filenameArg[12];
+    memcpy(filenameArg, "           ", 11);
+    filenameArg[11] = 0;
+    
+    // copy filename
+    for (i = 0; i < 8 && params[1][i] != '.' && params[1][i] != 0; i++) {
+            filenameArg[i] = toupper(params[1][i]);
+    }
+
+    // copy extension
+    if (params[1][i] == '.') {
+        int length = strlen(params[1]);
+        filenameArg[8] = toupper(params[1][length - 3]);
+        filenameArg[9] = toupper(params[1][length - 2]);
+        filenameArg[10] = toupper(params[1][length - 1]);
+    }
+
+    // find file in directory
+    char buff[12];
+    memcpy(buff, "           ", 11);
+    buff[11] = 0;
+    for (i = 0; i < 16; i++) {
+        memcpy(buff, "           ", 11);
+        memcpy(buff, dir[i].DIR_Name, 11);
+        buff[11] = 0;
+        if (strcmp(buff, filenameArg) == 0) {
+            dirToRead = i;
+        }
+    }
+
+    int position = atoi(params[2]);
+    int readingPos = dir[dirToRead].DIR_FirstClusterLow;
+
+    while (position > 511) {
+        position -= 512;
+        readingPos = NextLB(readingPos);
+    }
+
+    int address = LBAToOffset(readingPos);
+    fseek(currentFP, address + position, SEEK_SET);
+
+    char sector[512];
+    memset(sector, 0, 512);
+    if (numBytes <= 512) {
+        fread(&sector, numBytes, 1, currentFP);
+        for (i = 0; i < numBytes; i++) {
+            printf("%x ", sector[i]);
+        }
+    }
+
+
+
     return 1;
+}
+
+/*
+    This code taken from professor Trevor Bakker
+*/
+int16_t NextLB(uint32_t sector) {
+    uint32_t FATAddress = (BytesPerSector * RsvdSectorCount) + sector * 4;
+    int16_t val;
+    fseek(currentFP, FATAddress, SEEK_SET);
+    fread(&val, 2, 1, currentFP);
+    return val;
+}
+
+int LBAToOffset(int32_t sector) {
+    return ((sector - 2) * BytesPerSector) + BytesPerSector * RsvdSectorCount +
+            NumFATS * FATSz32 * BytesPerSector;
 }
