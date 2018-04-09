@@ -244,15 +244,16 @@ int ls(char ** params) {
     memcpy(buff, "           ", 11);
     buff[11] = 0;
 
-    printf(".\n..\n");
-
-    for (int i = 0; i < 16; i++) {
+    printf(".\n");
+    int i;
+    for (i = 0; i < 16; i++) {
         if (dir[i].DIR_Attr == 1 || dir[i].DIR_Attr == 16 || dir[i].DIR_Attr == 32) {
             memcpy(buff, dir[i].DIR_Name, 11);
-            for (int j = 0; j < 12; j++) {
-                printf("%d ", buff[j]);
+
+            // if not deleted file
+            if (buff[0] != -27) {
+                printf("%s\n",  buff);
             }
-            printf("%s\n",  buff);
         }
     }
 
@@ -352,7 +353,6 @@ int cd(char ** params) {
 
     if (found) {
         int newDirectory = ((newCluster - 2) * BytesPerSector) + rootCluster;
-        printf("%d\n", newDirectory);
         fseek(currentFP, newDirectory, SEEK_SET);
         for (i = 0; i < 16; i++) {
             fread(&dir[i], 32, 1, currentFP);
