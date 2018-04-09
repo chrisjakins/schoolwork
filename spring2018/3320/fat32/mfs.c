@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <ctype.h>
 
-#define MAX_NUM_ARGUMENTS 2
+#define MAX_NUM_ARGUMENTS 5
 #define MAX_COMMAND_SIZE 64
 #define WHITESPACE " \n\t"
 
@@ -404,6 +404,7 @@ int my_read(char ** params) {
     char filenameArg[12];
     memcpy(filenameArg, "           ", 11);
     filenameArg[11] = 0;
+
     
     // copy filename
     for (i = 0; i < 8 && params[1][i] != '.' && params[1][i] != 0; i++) {
@@ -434,14 +435,22 @@ int my_read(char ** params) {
     int position = atoi(params[2]);
     int readingPos = dir[dirToRead].DIR_FirstClusterLow;
 
-    while (position > 511) {
-        position -= 512;
+    while (position > BytesPerSector) {
+        position -= BytesPerSector;
         readingPos = NextLB(readingPos);
     }
 
     int address = LBAToOffset(readingPos);
     fseek(currentFP, address + position, SEEK_SET);
-
+    
+    char byte;
+    for (i = 0; i < numBytes; i++) {
+        fread(&byte, 1, 1, currentFP);
+        printf("%c", byte);
+    }
+    printf("\n");
+    //fseek(currentFP, 
+/*
     char sector[512];
     memset(sector, 0, 512);
     if (numBytes <= 512) {
@@ -450,7 +459,7 @@ int my_read(char ** params) {
             printf("%x ", sector[i]);
         }
     }
-
+*/
 
 
     return 1;
