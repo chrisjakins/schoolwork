@@ -14,10 +14,6 @@ gain = 0
 cutoff = 0
 
 #
-#   Functions
-#
-
-#
 #   effective main
 #
 config = open(configFile, "r")
@@ -60,20 +56,20 @@ for i in range(len(outData)):
 #   plotting
 #
 
-freqData = abs(np.fft.fft(data))
-finalData = abs(np.fft.fft(finalData))
+freqData = np.fft.fft(data)
+filteredFreq = np.fft.fft(finalData)
 
 maxVal = np.amax(freqData)
 #   generate the frequencies for corresponding bins in dft
 xaxis = [fundamental * x for x in range(len(freqData) // 4)]
 
 plt.subplot(1, 2, 1)
-plt.plot(xaxis, freqData[:len(freqData) // 4])
+plt.plot(xaxis, abs(freqData[:len(freqData) // 4]))
 ymin, ymax = plt.ylim()
 plt.ylim([ymin, maxVal + 100])
 
 plt.subplot(1, 2, 2)
-plt.plot(xaxis, finalData[:len(finalData) // 4])
+plt.plot(xaxis, abs(filteredFreq[:len(finalData) // 4]))
 plt.ylim([ymin, maxVal + 100])
 
 plt.tight_layout()
