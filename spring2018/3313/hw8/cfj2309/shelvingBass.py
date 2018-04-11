@@ -1,3 +1,8 @@
+"""
+    Chris Jakins
+    HW8 CSE3313
+    4/11
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 import soundfile as sf
