@@ -10,6 +10,7 @@
 #define WHITESPACE " \n\t"
 
 FILE * currentFP = NULL;
+char currentDirectory[24] = "";
 int currentCluster;
 int rootCluster;
 
@@ -62,7 +63,7 @@ int main() {
     do {
         memset(token, '\0', sizeof(token) * MAX_NUM_ARGUMENTS);
 
-        printf("msh> ");
+        printf("msh:%s> ", currentDirectory);
         readInput(token);
         status = execute(token);
 
@@ -327,12 +328,17 @@ int cd(char ** params) {
 
     // copy filename
     int i;
-    for (i = 0; i < 8 && params[1][i] != '.' && params[1][i] != 0; i++) {
+    for (i = 0; i < 8 && params[1][i] != 0; i++) {
             filenameArg[i] = toupper(params[1][i]);
+            currentDirectory[i] = params[1][i] == ' ' ? '0' : toupper(params[1][i]);
+    }
+
+    // for bonus points :D
+    if (strcmp(filenameArg, "..         ") == 0) {
+        currentDirectory[0] = 0;
     }
 
     int newCluster;
-    FILE * tempFP = currentFP; // storing current directory level
 
     fseek(currentFP, currentCluster, SEEK_SET);
 
@@ -352,7 +358,12 @@ int cd(char ** params) {
     }
 
     if (found) {
-        int newDirectory = ((newCluster - 2) * BytesPerSector) + rootCluster;
+        // if user enters '..' then I just take them back to root cluster
+        // will fix if have time
+        int newDirectory = strcmp(filenameArg, "..         ") != 0 ? 
+                            ((newCluster - 2) * BytesPerSector) + rootCluster :
+                            rootCluster;
+
         fseek(currentFP, newDirectory, SEEK_SET);
         for (i = 0; i < 16; i++) {
             fread(&dir[i], 32, 1, currentFP);
@@ -400,11 +411,15 @@ int my_read(char ** params) {
         return 1;
     }
 
+    if (!params[1] || !params[2] || !params[3]) {
+        printf("Error: read <filename> <position> <number of bytes>\n");
+        return 1;
+    }
+
     int numBytes = atoi(params[3]), dirToRead = -1, i;
     char filenameArg[12];
     memcpy(filenameArg, "           ", 11);
     filenameArg[11] = 0;
-
     
     // copy filename
     for (i = 0; i < 8 && params[1][i] != '.' && params[1][i] != 0; i++) {
@@ -449,18 +464,6 @@ int my_read(char ** params) {
         printf("%c", byte);
     }
     printf("\n");
-    //fseek(currentFP, 
-/*
-    char sector[512];
-    memset(sector, 0, 512);
-    if (numBytes <= 512) {
-        fread(&sector, numBytes, 1, currentFP);
-        for (i = 0; i < numBytes; i++) {
-            printf("%x ", sector[i]);
-        }
-    }
-*/
-
 
     return 1;
 }

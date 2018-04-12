@@ -1,8 +1,8 @@
 #include <stdlib.h>
 
-typdef struct Map {
-    static char heap[1000];
-    static char lookup[1000];
+typedef struct Map {
+    char heap[1000];
+    char lookup[1000];
 } Map;
 
 Map Heap;
@@ -12,11 +12,12 @@ Map Heap;
 
 void * _malloc(size_t size) {
 
-    return &X;
+    return &Heap;
 }
 
 void _free(void * ptr) {
-    int numBlocks = *(ptr - 1);
+    ptr = (Map *) ptr;
+//    char numBlocks = (ptr - 1)->lookup[100];
 
     // see if next or previous chain of blocks is used
     //      combine if necessary
