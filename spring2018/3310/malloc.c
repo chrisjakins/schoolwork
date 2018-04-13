@@ -1,10 +1,5 @@
 #include <stdlib.h>
 
-typdef struct Map {
-    static char heap[1000];
-    static char lookup[1000];
-} Map;
-
 Map Heap;
 
 // Utility methods
