@@ -1,17 +1,16 @@
 #include <stdlib.h>
 
-Map Heap;
-
 // Utility methods
 // Required methods
 
 void * _malloc(size_t size) {
 
-    return &X;
+    return &Heap;
 }
 
 void _free(void * ptr) {
-    int numBlocks = *(ptr - 1);
+    ptr = (Map *) ptr;
+//    char numBlocks = (ptr - 1)->lookup[100];
 
     // see if next or previous chain of blocks is used
     //      combine if necessary
