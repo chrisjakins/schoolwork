@@ -396,7 +396,67 @@ int get(char ** params) {
         printf("Error: File system image must be opened first.\n");
         return 1;
     }
-    printf("%s\n", params[1]);
+
+    if (!params[1]) {
+        printf("Error: get <filename>\n");
+        return 1;
+    }
+
+    int dirToRead = -1, i;
+    char filenameArg[12];
+    memcpy(filenameArg, "           ", 11);
+    filenameArg[11] = 0;
+    
+    // copy filename
+    for (i = 0; i < 8 && params[1][i] != '.' && params[1][i] != 0; i++) {
+            filenameArg[i] = toupper(params[1][i]);
+    }
+
+    // copy extension
+    if (params[1][i] == '.') {
+        int length = strlen(params[1]);
+        filenameArg[8] = toupper(params[1][length - 3]);
+        filenameArg[9] = toupper(params[1][length - 2]);
+        filenameArg[10] = toupper(params[1][length - 1]);
+    }
+
+    // find file in directory
+    char buff[12];
+    memcpy(buff, "           ", 11);
+    buff[11] = 0;
+    for (i = 0; i < 16; i++) {
+        memcpy(buff, "           ", 11);
+        memcpy(buff, dir[i].DIR_Name, 11);
+        buff[11] = 0;
+        if (strcmp(buff, filenameArg) == 0) {
+            dirToRead = i;
+        }
+    }
+
+    char outfile[12];
+    strcpy(outfile, params[1]);
+
+    FILE * newFP = fopen(outfile, "w");
+
+    // grab values from user input
+    int readingPos = dir[dirToRead].DIR_FirstClusterLow;
+    int offset = 0;
+    int address = LBAToOffset(readingPos);
+
+    char byte;
+    while (readingPos != -1) {
+        address = LBAToOffset(readingPos);
+        fseek(currentFP, address, SEEK_SET);
+
+        for (i = 0; i < BytesPerSector; i++) {
+            fread(&byte, 1, 1, currentFP);
+            fwrite(&byte, 1, 1, newFP);
+        }
+
+        readingPos = NextLB(readingPos);
+    }
+
+    fclose(newFP);
     return 1;
 }
 
@@ -447,9 +507,11 @@ int my_read(char ** params) {
         }
     }
 
+    // grab values from user input
     int position = atoi(params[2]);
     int readingPos = dir[dirToRead].DIR_FirstClusterLow;
 
+    // go to user requested start value
     while (position > BytesPerSector) {
         position -= BytesPerSector;
         readingPos = NextLB(readingPos);
@@ -457,7 +519,8 @@ int my_read(char ** params) {
 
     int address = LBAToOffset(readingPos);
     fseek(currentFP, address + position, SEEK_SET);
-    
+   
+    // read out the file to stdout
     char byte;
     for (i = 0; i < numBytes; i++) {
         fread(&byte, 1, 1, currentFP);
