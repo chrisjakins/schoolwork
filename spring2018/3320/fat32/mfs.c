@@ -1,3 +1,9 @@
+/*
+    Chris Jakins
+    FAT32 File System Reader
+    
+    I apologize for the messy code...
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -115,7 +121,7 @@ int parseInput(char * input, char ** token) {
 }
 
 int execute(char ** params) {
-    int status, execErr = 0;
+    int execErr;
 
     /* if the user entered exit or quit, return 0 to end main */
     if (params[0]) {
@@ -163,6 +169,7 @@ int execute(char ** params) {
             printf("do something\n");
         }
     }
+    if (execErr) {}
     return 1;
 }
 
@@ -440,7 +447,6 @@ int get(char ** params) {
 
     // grab values from user input
     int readingPos = dir[dirToRead].DIR_FirstClusterLow;
-    int offset = 0;
     int address = LBAToOffset(readingPos);
 
     char byte;
