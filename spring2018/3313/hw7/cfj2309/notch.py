@@ -28,12 +28,13 @@ def filter(data) :
 
     for i in range(2, len(data) + 100) :
         if i < len(data) :
+            # i know this is a pain to look at
             output.append(1.8744 * np.cos(normFreq) * output[i - 1] -
                           .9372**2 * output[i - 2] + 
                           (data[i] if i < len(data) else 0) -
                           2 * np.cos(normFreq) * (data[i - 1] if i < len(data) + 1 else 0) + 
                           (data[i - 2] if i < len(data) + 2 else 0)
-                          )
+                      )
 
     return output
 
