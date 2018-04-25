@@ -54,18 +54,10 @@ x, y = ij[::-1]
 
 print(x, y)
 
-fill = np.zeros(template.shape[0])
-
-"""
-# not sure why below doesn't work
-for i in range(y, y + template.shape[1]):
-    img[x : x + template.shape[0] + 1][i] = fill.T
-"""
-
+# how do i do this better
 for i in range(y, y + template.shape[1]):
     for j in range(x, x + template.shape[0]):
         img[i][j] = 0
-
 
 plt.imshow(img, cmap = "gray")
 plt.show()

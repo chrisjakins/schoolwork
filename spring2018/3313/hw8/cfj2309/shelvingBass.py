@@ -80,8 +80,5 @@ plt.ylim([ymin, maxVal + 100])
 plt.tight_layout()
 plt.show()
 
-#
 #   write out modified soundfile
-#
-
 sf.write(outfile, finalData, sampleRate)
