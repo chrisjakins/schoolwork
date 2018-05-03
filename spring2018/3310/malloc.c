@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <string.h>
+#include <string.h> // for memset
 
 char heap[10000000];
 
@@ -10,28 +10,29 @@ typedef struct list {
 } List;
 
 
-List * freeList = (void *) heap;
+List * freeBlocks = (void *) heap;
 
 // Utility methods
 void init() {
-    freeList->size = 10000000 - sizeof(List);
-    freeList->free = 1;
-    freeList->next = NULL;
+    freeBlocks->size = 10000000 - sizeof(List);
+    freeBlocks->free = 1;
+    freeBlocks->next = NULL;
 }
 
-void split(List * fitting_slot, int size) {
-    List * new = ((void *) fitting_slot + size + sizeof(List));
-    new->size = (fitting_slot->size) - size - sizeof(List);
+void split(List * block, int size) {
+    List * new = block + size + sizeof(List);
+    new->size = block->size - size - sizeof(List);
     new->free = 1;
-    new->next = fitting_slot->next;
-    fitting_slot->size = size;
-    fitting_slot->free = 0;
-    fitting_slot->next = new;
+    new->next = block->next;
+
+    block->size = size;
+    block->free = 0;
+    block->next = new;
 }
 
 void merge() {
     List * curr, * prev;
-    curr = freeList;
+    curr = freeBlocks;
     while (curr->next) {
         if (curr->free && curr->next->free) {
             curr->size += curr->next->size + sizeof(List);
@@ -46,11 +47,11 @@ void merge() {
 
 void * _malloc(int numBytes) {
     List * curr, * prev;
-    void * result;
-    if (!(freeList->size)) {
+    void * blockGiven;
+    if (!(freeBlocks->size)) {
         init();
     }
-    curr = freeList;
+    curr = freeBlocks;
     while ((curr->size < numBytes || curr->free == 0) && curr->next) {
         prev = curr;
         curr = curr->next;
@@ -59,19 +60,19 @@ void * _malloc(int numBytes) {
     if (curr->size == numBytes) {
 
         curr->free = 0;
-        result = (void *) ++curr;
-        return result;
+        blockGiven = (void *) ++curr;
+        return blockGiven;
 
     } else if (curr->size > numBytes + sizeof(List)) {
 
         split(curr, numBytes);
-        result = (void *) ++curr;
-        return result;
+        blockGiven = (void *) ++curr;
+        return blockGiven;
 
     } else {
 
-        result = NULL;
-        return result;
+        blockGiven = NULL;
+        return blockGiven;
 
     }
 }
@@ -90,10 +91,10 @@ void _free(void * ptr) {
 void * _calloc(size_t nmemb, int size) {
     List * curr, * prev;
     void * result;
-    if (!(freeList->size)) {
+    if (!(freeBlocks->size)) {
         init();
     }
-    curr = freeList;
+    curr = freeBlocks;
     while ((curr->size < size || curr->free == 0) && curr->next) {
         prev = curr;
         curr = curr->next;
@@ -123,10 +124,10 @@ void * _calloc(size_t nmemb, int size) {
 void * realloc(void * ptr, size_t size) {
     List * curr, * prev;
     void * result;
-    if (!(freeList->size)) {
+    if (!(freeBlocks->size)) {
         init();
     }
-    curr = freeList;
+    curr = freeBlocks;
     while ((curr->size < size || curr->free == 0) && curr->next) {
         prev = curr;
         curr = curr->next;
