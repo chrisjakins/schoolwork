@@ -33,7 +33,7 @@ void split(List * block, int size) {
 void merge() {
     List * curr, * prev;
     curr = freeBlocks;
-    while (curr->next) {
+    while (curr && curr->next) {
         if (curr->free && curr->next->free) {
             curr->size += curr->next->size + sizeof(List);
             curr->next = curr->next->next;
