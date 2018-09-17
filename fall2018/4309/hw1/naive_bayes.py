@@ -2,6 +2,7 @@
 import sys
 import os
 import numpy as np
+from classifier import NaiveBayesClassifier
 
 
 if len(sys.argv) != 3:
@@ -32,15 +33,20 @@ if test_file == None:
 training_file = open(training_file, 'r')
 training_data = []
 for line in training_file:
-    training_data.append(line.split())
+    training_data.append([float(x) for x in line.split()])
 
-training_data = np.asarray([[float(y) for y in x] for x in training_data])
-training_classes = training_data[:, len(training_data[0]) - 1]
+training_data = np.asarray(training_data)
+training_classes = training_data[:, -1]
 training_data = training_data[:, : -1]
-print(len(training_data))
 
-"""
 test_file = open(test_file, 'r')
+test_data = []
 for line in test_file:
-    print("test")
-"""
+    test_data.append([float(x) for x in line.split()])
+
+test_data = np.asarray(test_data)
+
+# naive bayes classifier
+
+cfier = NaiveBayesClassifier(training_data, training_classes)
+cfier.train()
