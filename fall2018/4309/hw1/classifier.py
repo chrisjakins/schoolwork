@@ -30,15 +30,6 @@ class NaiveBayesClassifier:
 
 
     def test(self, test_data):
-        """
-        print("Mean")
-        print(self.mean)
-        print("S_Deviation")
-        print(self.s_deviation)
-        print("Test_data")
-        print(test_data)
-        print(self.class_frequencies)
-        """
         p_x = 0
         interim = 0
         probabilities = []
@@ -46,26 +37,11 @@ class NaiveBayesClassifier:
             # calculate gaussians for each dimension for the i-th class
             numerator = np.negative(np.square(np.subtract(test_data, self.mean[i])))
             denominator = np.multiply(np.square(self.s_deviation[i]), 2)
-            #print("Numerator")
-            #print(numerator)
-            #print("Denominator")
-            #print(numerator)
             exponential = np.exp(np.divide(numerator, denominator))
             gaussian_value = np.divide(exponential, np.multiply(self.s_deviation[i], np.sqrt(2 * np.pi)))
 
-            #print("Gaussian")
-            #print(gaussian_value)
-            # correct up to here
-
             # p(x|Ck) * p(Ck)
             interim = np.multiply(np.prod(gaussian_value), self.class_frequencies[i])
-            """
-            np.set_printoptions(suppress=True)
-            print(gaussian_value)
-            print("%.5f" % np.prod(gaussian_value))
-            print("interim")
-            print(interim)
-            """
 
             # add to p(x) (SUM RULE)
             p_x += interim
@@ -74,11 +50,12 @@ class NaiveBayesClassifier:
 
         probabilities = np.asarray(probabilities)
         probabilities = np.divide(probabilities, p_x)
+        # find max probability
         probability = probabilities[np.argmax(probabilities)]
+        # get ties
         results = []
         for i in range(0, len(probabilities)):
             if probabilities[i] == probability:
                 results.append(self.classes[i])
 
-        #result_class = self.classes[np.argmax(probabilities)]
         return results, probability

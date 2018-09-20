@@ -23,28 +23,26 @@ training_file = find(training_filename, './')
 if training_file == None:
     training_file = find(training_filename, '/')
 
+if training_file == None:
+    print("%s not found" % (training_filename))
+    quit()
+
 test_file = find(test_filename, './')
 if test_file == None:
     test_file = find(test_filename, '/')
 
+if test_file == None:
+    print("%s not found" % (test_filename))
+    quit()
+
 # reading files and convert to numpy array
 # split class data off of training data
 
-training_file = open(training_file, 'r')
-training_data = []
-for line in training_file:
-    training_data.append([float(x) for x in line.split()])
-
-training_data = np.asarray(training_data)
+training_data = np.loadtxt(training_file)
 training_classes = training_data[:, -1]
 training_data = training_data[:, : -1]
 
-test_file = open(test_file, 'r')
-test_data = []
-for line in test_file:
-    test_data.append([float(x) for x in line.split()])
-
-test_data = np.asarray(test_data)
+test_data = np.loadtxt(test_file)
 test_classes = test_data[:, - 1]
 test_data = test_data[:, : -1]
 
@@ -66,28 +64,18 @@ print_training(class_labels, mean, s_deviation)
 # test
 
 def print_test(row, prediction, probability, actual, accuracy):
-    print("ID = %5d, predicted = %3d, probability = %.4f, true = %3d, accuracy = %4.2f\n" % (row, prediction, probability, actual, accuracy))
+    print("ID=%5d, predicted=%3d, probability = %.4f, true=%3d, accuracy=%4.2f\n" % (row, prediction, probability, actual, accuracy))
 
-count = 0
-"""
-predicitions, probability = cfier.test(test_data[1])
-print(predictions)
-print(test_classes[1])
-"""
 total = 0
 for i in range(0, len(test_data)):
     predictions, probability = cfier.test(test_data[i])
     if test_classes[i] in predictions:
         accuracy = 1 / len(predictions)
-        print(accuracy)
         print_test(i + 1, test_classes[i], probability, test_classes[i], accuracy)
     else:
+        accuracy = 0
         print_test(i + 1, predictions[0], probability, test_classes[i], 0)
     
     total += accuracy
 
-    if predictions == test_classes[i]:
-        count += 1
-
-print("Classification accuracy = %6.4f" % (total / len(test_data)))
-#print(count)
+print("classification accuracy=%6.4f" % (total / len(test_data)))
