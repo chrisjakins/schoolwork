@@ -1,4 +1,11 @@
 #!/usr/bin/python
+#
+#   Chris Jakins
+#
+#   NOTE:
+#       if the program seems like it is taking a while to run,
+#       it is probably searching through all of the files on the local
+#       computer to find the specified training and test files
 import sys
 import os
 import numpy as np
