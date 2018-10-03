@@ -31,15 +31,9 @@ class NaiveBayesClassifier:
 
     def test(self, test_data):
         p_x = 0
-        interim = 0
         probabilities = []
         for i in range(0, len(self.classes)):
-            # calculate gaussians for each dimension for the i-th class
-            numerator = np.negative(np.square(np.subtract(test_data, self.mean[i])))
-            denominator = np.multiply(np.square(self.s_deviation[i]), 2)
-            exponential = np.exp(np.divide(numerator, denominator))
-            gaussian_value = np.divide(exponential, np.multiply(self.s_deviation[i], np.sqrt(2 * np.pi)))
-
+            gaussian_value = self.calcGaussians(test_data, self.mean[i], self.s_deviation[i])
             # p(x|Ck) * p(Ck)
             interim = np.multiply(np.prod(gaussian_value), self.class_frequencies[i])
 
@@ -59,3 +53,9 @@ class NaiveBayesClassifier:
                 results.append(self.classes[i])
 
         return results, probability
+
+    def calcGaussians(self, values, means, std):
+        numerator = np.negative(np.square(np.subtract(values, means)))
+        denominator = np.multiply(np.square(std), 2)
+        exponential = np.exp(np.divide(numerator, denominator))
+        return np.divide(exponential, np.multiply(std, np.sqrt(2 * np.pi)))
