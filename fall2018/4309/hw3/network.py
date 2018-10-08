@@ -32,12 +32,10 @@ class NeuralNetwork:
         for i in range(self.num_examples):
             self.train_labels[int(labels[i]) - 1][i] = 1
         
-        print(self.train_labels[:,10])
-
 
     def train(self):
+        # initializing
         self.model = {}
-        # INPUT LAYER
         W1 = np.subtract(np.multiply(np.random.rand(self.num_dimensions + 1, self.upl), .1), .05)
         W2 = np.subtract(np.multiply(np.random.rand(self.upl + 1, self.num_classes), .1), .05)
         self.model['W1'] = W1
@@ -45,11 +43,12 @@ class NeuralNetwork:
 
         for i in range(0, self.num_rounds):
 
-            a = np.dot(W1.T, self.train_data[:,10])
+            # INPUT LAYER
+            a = np.dot(W1.T, self.train_data[:,0])
             Z1 = self.sigmoid(a)
             self.outs = {'Z1' : Z1}
             print('After input layer -> hidden layer feedforward')
-            print(self.train_data[:,10])
+            print(self.train_data[:,0])
             print(W1)
             print(a)
             print(Z1)
@@ -71,7 +70,7 @@ class NeuralNetwork:
 
             # BACKWARDS
             # OUTPUT LAYER
-            labels = self.train_labels[:,10].reshape((10,1))
+            labels = self.train_labels[:,0].reshape((10,1))
             delta_out = np.multiply(np.subtract(self.outs['Z2'], labels), self.outs['Z2']) 
             delta_out = np.multiply(delta_out, (1 - self.outs['Z2']))
             print('Delta of output layer')
@@ -89,7 +88,7 @@ class NeuralNetwork:
             # INNER LAYER
             print('Update inner -> hidden')
             print(self.model['W1'])
-            update_weightLayer1 = np.multiply(self.learning_rate * delta_hidden, self.train_data[:,10])
+            update_weightLayer1 = np.multiply(self.learning_rate * delta_hidden, self.train_data[:,0])
             self.model['W1'] = np.subtract(self.model['W1'].T, update_weightLayer1).T
             print(update_weightLayer1)
             print(self.model['W1'])
@@ -107,14 +106,22 @@ class NeuralNetwork:
         print(self.outs['Z2'])
 
 
-    def forward(self):
-        print('hello')
-
-
     def test(self, data, labels):
-        # don't forget to normalize attributes
+        print('TESTING')
+        print('TESTING')
+        print('TESTING')
+        print('TESTING')
         data = np.divide(data, self.max_normalize)
+        z = data.T
 
+        for i in range(1, self.num_layers):
+            temp = np.ones((len(z[0]), 1)).T
+            z = np.vstack((temp, z))
+    
+            a = np.dot(self.model['W' + str(i)].T, z) 
+            z = self.sigmoid(a)
+
+        return z
 
     def sigmoid(self, val):
         temp = np.exp(np.negative(val))
