@@ -53,10 +53,11 @@ total_accuracy = 0
 for i in range(0, len(test_data)):
     prediction_index = np.argmax(predictions[:,i], axis = 0)
     count = np.count_nonzero(predictions[:,i] == predictions[prediction_index][i])
+    if count > 1:
+        print(i)
     acc = 1 / count if np.unique(test_classes)[prediction_index] == test_classes[i] else 0
     total_accuracy += acc
 
-    print('ID=%5d, predicted=%3d, true=%3d, accuracy=%4.2f\n' % (i + 1, np.unique(test_classes)[prediction_index], test_classes[i], acc))
+    #print('ID=%5d, predicted=%3d, true=%3d, accuracy=%4.2f\n' % (i + 1, np.unique(test_classes)[prediction_index], test_classes[i], acc))
 
 print('classification accuracy=%6.4f\n' % (total_accuracy / len(test_data)))
-print(np.unique(test_classes))
