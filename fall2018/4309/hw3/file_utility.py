@@ -21,7 +21,7 @@ class FileUtility:
         new_file = self.find(name, './')
 
         if new_file == None:
-            new_file = sef.find(name, '../')
+            new_file = self.find(name, '../')
         if new_file == None:
             new_file = self.find(name, '/')
         if new_file == None:
