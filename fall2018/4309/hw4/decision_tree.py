@@ -26,7 +26,15 @@ training_data, training_classes, test_data, test_classes = file_util.get_dataset
 # start up the tree
 #
 
-tree = DecisionTree()
+subset_data = training_data[:1120, :]
+subset_labels = training_classes[:1120]
 
-data = np.asarray([1, 1, 1, 1, 1, 1, 1, 1])
-tree.entropy(data)
+print('data')
+print(subset_data)
+print('labels')
+print(subset_labels)
+
+tree = DecisionTree()
+#print(training_data)
+attr = [x for x in range(0, len(subset_data[0]))]
+tree.choose_attribute_O(subset_data, subset_labels, attr)
