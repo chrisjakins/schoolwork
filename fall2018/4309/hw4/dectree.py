@@ -26,7 +26,9 @@ class DecisionTree:
     #   end TreeNode class
     #
 
-    def dtl(self, ex, labels, default):
+    # default is a distribution over the labels
+    # returns a TreeNode
+    def dtl(self, ex, labels, default) -> TreeNode:
         if len(ex) == 0:
             newNode = self.TreeNode(-1, -1, default)
             return newNode
@@ -133,5 +135,5 @@ class DecisionTree:
             if test_data[tree.attr] < tree.thresh:
                 tree = tree.left
             else:
-                tree = tree.right
+               tree = tree.right
         return tree.distr

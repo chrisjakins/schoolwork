@@ -2,6 +2,7 @@ import sys
 import numpy as np
 from file_utility import FileUtility
 from dectree import DecisionTree
+from forest import Forest
 
 
 if len(sys.argv) != 5:
@@ -22,9 +23,36 @@ pruning_thr = int(sys.argv[4])
 file_util = FileUtility(training_filename, test_filename)
 training_data, training_classes, test_data, test_classes = file_util.get_dataset()
 
+
 #
 # start up the tree
 #
+if option == 'optimized':
+    forest = Forest(1, option, training_data, training_classes)
+elif option == 'randomized':
+    forest = Forest(1, option, training_data, training_classes)
+elif option == 'forest3':
+    forest = Forest(3, 'randomized', training_data, training_classes)
+elif option == 'forest15':
+    forest = Forest(15, 'randomized', training_data, training_classes)
+
+forest.train()
+labels = np.unique(training_classes)
+total_accuracy = 0
+for i in range(0, len(test_data)):
+    predictions = forest.test(test_data[i])
+    prediction_index = np.argmax(predictions)
+
+    count = np.count_nonzero(predictions == predictions[prediction_index])
+    acc = 1 / count if np.unique(test_classes)[prediction_index] == test_classes[i] else 0
+
+    total_accuracy += acc
+
+    print('ID=%5d, predicted=%3d, true=%3d, accuracy=%4.2f\n' % 
+            (i + 1, labels[prediction_index], test_classes[i], acc))
+
+print('classification accuracy=%6.4f\n' % (total_accuracy / len(test_data)))
+"""
 tree = DecisionTree(training_classes, option)
 myTree = tree.dtl(training_data, training_classes, tree.distribution(training_classes))
 
@@ -43,3 +71,4 @@ for i in range(0, len(test_data)):
             (i + 1, labels[prediction_index], test_classes[i], acc))
 
 print('classification accuracy=%6.4f\n' % (total_accuracy / len(test_data)))
+"""
