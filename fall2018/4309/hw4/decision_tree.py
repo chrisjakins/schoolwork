@@ -25,16 +25,21 @@ training_data, training_classes, test_data, test_classes = file_util.get_dataset
 #
 # start up the tree
 #
+tree = DecisionTree(training_classes, option)
+myTree = tree.dtl(training_data, training_classes, tree.distribution(training_classes))
 
-subset_data = training_data[:1120, :]
-subset_labels = training_classes[:1120]
+labels = np.unique(training_classes)
+total_accuracy = 0
+for i in range(0, len(test_data)):
+    predictions = tree.test(myTree, test_data[i])
+    prediction_index = np.argmax(predictions)
 
-print('data')
-print(subset_data)
-print('labels')
-print(subset_labels)
+    count = np.count_nonzero(predictions == predictions[prediction_index])
+    acc = 1 / count if np.unique(test_classes)[prediction_index] == test_classes[i] else 0
 
-tree = DecisionTree()
-#print(training_data)
-attr = [x for x in range(0, len(subset_data[0]))]
-tree.choose_attribute_O(subset_data, subset_labels, attr)
+    total_accuracy += acc
+
+    print('ID=%5d, predicted=%3d, true=%3d, accuracy=%4.2f\n' % 
+            (i + 1, labels[prediction_index], test_classes[i], acc))
+
+print('classification accuracy=%6.4f\n' % (total_accuracy / len(test_data)))
