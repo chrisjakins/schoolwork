@@ -28,15 +28,15 @@ training_data, training_classes, test_data, test_classes = file_util.get_dataset
 # start up the tree
 #
 if option == 'optimized':
-    forest = Forest(1, option, training_data, training_classes)
+    forest = Forest(1, option, training_data, training_classes, pruning_thr)
 elif option == 'randomized':
-    forest = Forest(1, option, training_data, training_classes)
+    forest = Forest(1, option, training_data, training_classes, pruning_thr)
 elif option == 'forest3':
-    forest = Forest(3, 'randomized', training_data, training_classes)
+    forest = Forest(3, 'randomized', training_data, training_classes, pruning_thr)
 elif option == 'forest15':
-    forest = Forest(15, 'randomized', training_data, training_classes)
+    forest = Forest(15, 'randomized', training_data, training_classes, pruning_thr)
 
-forest.train()
+forest.train() 
 labels = np.unique(training_classes)
 total_accuracy = 0
 for i in range(0, len(test_data)):
