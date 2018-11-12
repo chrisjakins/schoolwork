@@ -3,7 +3,7 @@ import numpy as np
 
 class FileUtility:
 
-    def __init__(self, training, test):
+    def __init__(self, training, test = None):
         self.training_data, self.training_classes = self.getData(training)
         self.test_data, self.test_classes = self.getData(test)
 
@@ -32,6 +32,9 @@ class FileUtility:
 
 
     def getData(self, filename):
+        if filename == None:
+            return None, None
+
         infile = self.file_search(filename)
         data = np.loadtxt(infile)
         classes = data[:, -1]
