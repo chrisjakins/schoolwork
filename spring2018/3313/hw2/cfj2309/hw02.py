@@ -13,6 +13,7 @@ noteNums = np.array([52, 52, 59, 59, 61, 61, 59, 59,
                      59, 59, 57, 57, 56, 56, 54, 54])
 
 frequencies = 440 * ( 2**( (noteNums - 49)/12 ) )
+
 sampleFreq = 8000
 time = np.arange(0, .5, 1 / sampleFreq)
 
