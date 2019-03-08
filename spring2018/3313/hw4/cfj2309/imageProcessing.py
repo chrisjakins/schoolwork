@@ -25,14 +25,17 @@ hpFilter = np.array([1, -1])
 def imageProcessing(filename) :
     img = mpimg.imread(filename)
 
+    plt.figure()
     plt.imshow(img, cmap = "gray")
     plt.title("Original image : %s" % (filename))
-    plt.show()
+#    plt.show()
     
+    plt.figure()
     plt.imshow(lowpassFilter(img), cmap = "gray")
     plt.title("Applying lowpass filter : %s" % (filename))
-    plt.show()
+#    plt.show()
 
+    plt.figure()
     plt.imshow(highpassFilter(img), cmap = "gray")
     plt.title("Applying highpass filter : %s" % (filename))
     plt.show()
