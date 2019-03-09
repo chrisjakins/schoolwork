@@ -1,4 +1,4 @@
-function [accuracy, confusion_matrix] = nnc_euclidean_stats()
+function [accuracy, confusion_matrix] = nnc_chamfer_stats();
 
 %
 %
@@ -17,7 +17,7 @@ for label = 0:9
     for sample = 1:10
         filename = sprintf('digits_test/label%d_test%d.png', label, sample);
         im = imread(filename);
-        result = nnc_euclidean(im);
+        result = nnc_chamfer(im);
         if result == label
             num_correct = num_correct + 1;
         end
