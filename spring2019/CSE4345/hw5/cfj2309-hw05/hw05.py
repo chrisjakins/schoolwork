@@ -16,24 +16,28 @@ import numpy as np
 
 data = np.genfromtxt('svd-data.csv', delimiter = ',')
 
+x_real = np.array([[1,1,1,1,1,1,1]]).T
 b = data[:,-1]
 A = data[:,:-1]
 
 x = np.linalg.pinv(A.T @ A) @ A.T @ b
-print('x = ')
-print(x.reshape(x.shape[0], 1))
+x = x.reshape(x.shape[0], 1)
+print('x1 = ')
+print(x)
 
 # print 2 norm of residual
+print('\nNorm = ', np.linalg.norm(x_real - x, ord = 2))
 
 ata = A.T @ A
 atb = A.T @ b
 
 x2 = np.linalg.solve(ata, atb)
-
-print('\nx = ')
-print(x2.reshape(x2.shape[0], 1))
+x2 = x2.reshape(x2.shape[0], 1)
+print('\nx2 = ')
+print(x2)
 
 # print 2 norm of residual
+print('\nNorm = ', np.linalg.norm(x_real - x2, ord = 2))
 
 u, sig, vt = np.linalg.svd(A)
 
@@ -50,10 +54,12 @@ for i in range(0, eff_rank):
     numer = u[:,i].T @ b.T
     x3 = x3 + (numer / sig[i] * vt[i,:]).reshape(vt[i,:].shape[0], 1)
 
-
-print('x = ')
-print(x3.reshape(x3.shape[0], 1))
+x3.reshape(x3.shape[0], 1)
+print('x3 = ')
+print(x3)
 
 # print 2 norm of residual
+print('\nNorm = ', np.linalg.norm(x_real - x3, ord = 2))
+
 print('Condition number of A.T A = ', end = '')
 print(np.linalg.cond(ata))
