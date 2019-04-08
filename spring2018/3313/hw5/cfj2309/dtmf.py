@@ -65,6 +65,11 @@ for i in range(0, data.shape[0] // numSamples) :
 
 print()
 
-x, y = freqz(filterBank[0], 1) 
-plt.plot(x, abs(y))
+
+x_ys = [freqz(filterBank[i], 1) for i in range(len(filterBank))]
+#x, y = freqz(filterBank[0], 1) 
+#plt.plot(x, abs(y))
+for x_y in x_ys:
+    plt.plot(x_y[0], abs(x_y[1]))
+
 plt.show()
