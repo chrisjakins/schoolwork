@@ -8,6 +8,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import freqz
+from scipy.signal import spectrogram
 
 #   SETUP
 
@@ -70,4 +71,9 @@ x_ys = [freqz(filterBank[i], 1) for i in range(len(filterBank))]
 for x_y in x_ys:
     plt.plot(x_y[0], abs(x_y[1]))
 
+plt.show()
+
+
+f, t, sxx = spectrogram(data, sampleRate)
+plt.colormesh(sxx)
 plt.show()
