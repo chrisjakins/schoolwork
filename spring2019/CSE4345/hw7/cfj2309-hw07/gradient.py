@@ -1,20 +1,19 @@
+# Chris Jakins
+# 1000802309
+# HW7 - 4/11/2019
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def sum_of_squares(c, point):
-    total = 0
-
-    for i in range(0, c.shape[0]):
-        total += np.sum(np.square(c[i,:] - point))
-
-    return total
+    return np.sum(np.square(point.T - c))
 
 
-def gradient(c, point):
+def gradient(c, x):
+    n = c.shape[0]
     sums = np.sum(c, axis = 0)
-    grad = np.array([ -2 * sums[0] + 8 * point[0][0] ,
-                      -2 * sums[1] + 8 * point[1][0] ])
+    grad = np.array([ -2 * sums[0] + 2 * n * x[0][0] ,
+                      -2 * sums[1] + 2 * n * x[1][0] ])
 
     return grad
 
@@ -25,29 +24,26 @@ def positionHospital(c, h, alpha, tol):
     old_h = np.zeros(h.shape)
     i = 0
 
+    hosp_c = [h]
     while np.linalg.norm(h - old_h) > tol:
-        print('iteration ', i + 1)
         ssd = sum_of_squares(c, h)
-        print('Sum of Squared Differences = ', ssd)
-        grad = gradient(c, h)
-        print('Gradient = ', grad)
+        grad = -1 * gradient(c, h)
 
         old_h = h
-        h = h - grad.reshape(grad.shape[0], 1) * alpha
-        print('New hospital coordinates = \n', h)
-        print('\n')
+        h = h + grad.reshape(grad.shape[0], 1) * alpha
 
+        print('k = %d, fVal = %.2f, grad = [%.2f, %.2f], h = [%.2f, %.2f]\n'
+              % (i, ssd, grad[0], grad[1], h[0], h[1]))
+        hosp_c.append(h)
         i += 1
 
-    return h
+    return np.asarray(hosp_c)
 
 
 def plotCoor(cities, hospital):
-    plt.plot(cities, 'o')
-    plt.plot(hospital, 'x')
+    plt.plot(cities[:,0], cities[:,1], 'o')
+    plt.plot(hospital[:,0], hospital[:,1], 'x')
     plt.show()
-
-
 
 
 ###################  main  ###################
