@@ -11,7 +11,7 @@ import soundfile as sf
 #   setup
 #
 configFile = "shelvingConfig.txt"
-outfile = "shelvingOutput.wav"
+outfile = "shelving1.wav"
 
 #   defining these for later
 infile = ""
@@ -61,8 +61,10 @@ for i in range(len(outData)):
 #   plotting
 #
 
-freqData = np.fft.fft(data)
-filteredFreq = np.fft.fft(finalData)
+freqData = abs(np.fft.fft(data))
+filteredFreq = abs(np.fft.fft(finalData))
+
+print(filteredFreq[0:25])
 
 maxVal = np.amax(freqData)
 #   generate the frequencies for corresponding bins in dft
@@ -81,4 +83,5 @@ plt.tight_layout()
 plt.show()
 
 #   write out modified soundfile
-sf.write(outfile, finalData, sampleRate)
+writeto = np.fft.ifft(outData)
+sf.write(outfile, writeto, sampleRate)
