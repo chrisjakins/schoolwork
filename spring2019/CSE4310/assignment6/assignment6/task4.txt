@@ -1,0 +1,6 @@
+
+All of the d values in these ranges have perfect accuracy
+100, 110, 120, 130, 140, 150, 160, 180, 190
+
+This result makes sense as the eigenvalues in these ranges are very large, meaning
+that the corresponding eigenvectors contribute the most to the basis of the vector space.
