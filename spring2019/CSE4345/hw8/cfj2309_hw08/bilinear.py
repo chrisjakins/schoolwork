@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def resizeImage(name) :
-    image = plt.imread(name)
+    image = plt.imread(name).astype(np.int16)
 
     resized = np.zeros((image.shape[0] * 2 - 1, image.shape[1] * 2 - 1, 3))
 
@@ -25,11 +25,16 @@ def resizeImage(name) :
             else:
                 resized[i, j, :] = (image[i//2, j//2, :] + image[i//2 + 1, j//2, :] + image[i//2, j//2 + 1, :] + image[i//2 + 1, j//2 + 1, :]) / 4
 
+
     resized = np.floor(resized)
 
+    plt.subplot(1, 2, 1)
+    plt.title("Original")
     plt.imshow(image)
-    plt.show()
+    plt.subplot(1, 2, 2)
+    plt.title("Resized")
     plt.imshow(resized)
+    plt.tight_layout()
     plt.show()
 
 
