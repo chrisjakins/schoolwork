@@ -4,7 +4,7 @@ import java.net.Socket;
 import java.net.ServerSocket;
 import java.io.IOException;
 
-class Server implements Runnable {
+class Server {
     private Socket socket = null;
     private ServerSocket server = null;
     private int port_ = 0;
@@ -14,7 +14,7 @@ class Server implements Runnable {
         this.port_ = port;
     }
 
-    public void run() {
+    public void start() {
         System.out.println("Running one");
         synchronized(this) {
             this.runningThread = Thread.currentThread();
@@ -44,7 +44,8 @@ class Server implements Runnable {
     public static void main(String[] args) {
         System.out.println("Hello world");
         Server server = new Server(8080);
+        server.start();
 
-        new Thread(server).start();
+        //new Thread(server).start();
     }
 }
