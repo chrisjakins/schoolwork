@@ -16,9 +16,6 @@ class Server {
 
     public void start() {
         System.out.println("Running one");
-        synchronized(this) {
-            this.runningThread = Thread.currentThread();
-        }
         try {
             this.server = new ServerSocket(this.port_);
         } catch (IOException e) {
@@ -45,7 +42,5 @@ class Server {
         System.out.println("Hello world");
         Server server = new Server(8080);
         server.start();
-
-        //new Thread(server).start();
     }
 }
