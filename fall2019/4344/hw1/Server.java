@@ -15,7 +15,7 @@ class Server {
     }
 
     public void start() {
-        System.out.println("Running one");
+        System.out.println("=================Server started=================");
         try {
             this.server = new ServerSocket(this.port_);
         } catch (IOException e) {
@@ -26,20 +26,17 @@ class Server {
             Socket clientSocket = null;
             try {
                 clientSocket = this.server.accept();
+                System.out.println("Found Socket " + clientSocket.toString()
+                                    + " :: " + clientSocket.getPort());
             } catch (IOException e) {
                 System.out.println(e);
             }
 
-            new Thread(new WorkerRunnable(clientSocket, "Server")).start();
+            new Thread(new Response(clientSocket, "Server")).start();
         }
     }
 
-    private void handleRequest(String request) {
-    
-    }
-
     public static void main(String[] args) {
-        System.out.println("Hello world");
         Server server = new Server(8080);
         server.start();
     }
