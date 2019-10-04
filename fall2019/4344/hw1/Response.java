@@ -1,37 +1,54 @@
-package hw1;
-
+/***
+ * Chris Jakins 1000802309
+ */
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.ServerSocket;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
 
+/***
+ *  This class creates the proper HTTP response for a client. It is hooked
+ *  up to a single socket and sends a single message back.
+ *
+ *  The messages implemented in this class are:
+ *  200 - Request was OK'd and the corresponding file or information is being
+ *      sent back.
+ *  301 - The file was permanently moved to a different file, and the new
+ *      location will be sent back.
+ *  404 - The file was not found.
+ *
+ ***/
 public class Response implements Runnable {
-
+    // The client socket to communicate with
     protected Socket clientSocket = null;
-    protected String serverText = null;
 
-    public Response(Socket clientSocket, String serverText) {
+    public Response(Socket clientSocket) {
         this.clientSocket = clientSocket;
-        this.serverText   = serverText;
     }
 
+    /***
+     * This method is the entry point for this class once it is spawned
+     * on a new thread.
+     *
+     * We receive the input and output streams, pass them along to the
+     * request handler, and then close both streams.
+     */
     public void run() {
         System.out.println("Processing Client on Socket " + this.clientSocket.getPort());
         try {
             InputStream input = clientSocket.getInputStream();
             OutputStream output = clientSocket.getOutputStream();
 
-            File currDirectory = new File(System.getProperty("user.dir") + File.separator + "hw1");
+            // currDirectory will point to the current directory that this application was run from
+            // change this to be the root for where files are placed.
+            File currDirectory = new File(System.getProperty("user.dir"));
             handleRequest(input, output, currDirectory);
 
             input.close();
@@ -41,6 +58,14 @@ public class Response implements Runnable {
         }
     }
 
+    /***
+     *  This function parses the input request, generates the corresponding response, and sends it
+     *  out to the client.
+     *
+     *  @param in The input stream that holds the request from the client.
+     *  @param out The output stream on which to send the response back.
+     *  @param dir The current working directory.
+     */
     private void handleRequest(InputStream in, OutputStream out, File dir) throws Exception {
 		String line;
 		BufferedReader bf = new BufferedReader(new InputStreamReader(in));
@@ -48,10 +73,13 @@ public class Response implements Runnable {
 			if (line.length() <= 0) {
 				break;
 			}
+            // we are only handling get requests
 			if (line.startsWith("GET")) {
+                // filename will be whatever file the client is requesting.
 				String filename = line.split(" ")[1].substring(1);
 				File resource = new File(dir + File.separator + filename);
 
+                // 200, 301, 404
                 int httpCode = getHTTPCode(resource);
                 System.out.println("RESPONSE CODE : " + httpCode);
                 System.out.println("Requested :: " + resource.toString());
@@ -61,6 +89,13 @@ public class Response implements Runnable {
 		}
     }
 
+    /***
+     *  This function determines which HTTP code to produce given that
+     *  status of the requested file.
+     *
+     *  @param file The file to check on the system for.
+     *  @return 200, 301, 404 corresponding to the state of the requested file.
+     */
     private int getHTTPCode(File file) {
         if (file.exists() && !file.isDirectory()) {
             return 200;
@@ -71,6 +106,14 @@ public class Response implements Runnable {
         return 404;
     }
 
+    /***
+     *  Does the string processing to create the properly formatted response, and sends the
+     *  full response including the file if applicable back to the client.
+     *
+     *  @param resource The file requested (if it exists).
+     *  @param out The stream to send the information on back to the client.
+     *  @param code The corresponding HTTP code.
+     */
     private void populateResponse(File resource, OutputStream out, int code) throws IOException {
         String RESPONSE = "HTTP/1.0 ";
         String CONTENT_TYPE = "Content-type: ";
