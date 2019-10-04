@@ -26,14 +26,12 @@ public class Response implements Runnable {
     }
 
     public void run() {
-        System.out.println("Processing " + this.clientSocket.getPort());
+        System.out.println("Processing Client on Socket " + this.clientSocket.getPort());
         try {
             InputStream input = clientSocket.getInputStream();
             OutputStream output = clientSocket.getOutputStream();
 
             File currDirectory = new File(System.getProperty("user.dir") + File.separator + "hw1");
-            System.out.println(currDirectory.toString());
-
             handleRequest(input, output, currDirectory);
 
             input.close();
@@ -45,61 +43,67 @@ public class Response implements Runnable {
 
     private void handleRequest(InputStream in, OutputStream out, File dir) throws Exception {
 		String line;
-        String res;
 		BufferedReader bf = new BufferedReader(new InputStreamReader(in));
 		while ((line = bf.readLine()) != null) {
 			if (line.length() <= 0) {
 				break;
 			}
 			if (line.startsWith("GET")) {
-				String filename= line.split(" ")[1].substring(1);
+				String filename = line.split(" ")[1].substring(1);
 				File resource = new File(dir + File.separator + filename);
+
+                int httpCode = getHTTPCode(resource);
+                System.out.println("RESPONSE CODE : " + httpCode);
                 System.out.println("Requested :: " + resource.toString());
-				if (resource.isFile()) {
-					res = filename;
-					populateResponse(resource, out);
-				} else {
-					String Content_NOT_FOUND = "<html><head></head><body><h1>" +
-                        "File Not Found</h1></body></html>";
-					
-					String REQ_NOT_FOUND = "HTTP/1.1 404 Not Found\n\n";
-					String header = REQ_NOT_FOUND+ Content_NOT_FOUND;
-					
-					out.write(header.getBytes());
-				}
+                populateResponse(resource, out, httpCode);
 				break;
 			}
 		}
-            /*
-            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-            //String line = reader.readLine();
-            // 200 OK
-            File file = new File("./hw1/index.html");
-            int fileLength = (int) file.length();
-            String response = "HTTP/1.1 200 OK\nDate: " + new Date()
-                               + "\nServer: My Server\nContent-type: "
-                               + "text/html\nContent-length: " + fileLength + "\n\n";
-            System.out.println("Sending response :" + response + " to "
-                                + this.clientSocket.getPort());
-            output.write(response.getBytes());
-            Files.copy(Paths.get("./hw1/index.html"), output);
-            output.flush();
-            System.out.println("Request processed: ");
-            */
     }
 
-    private void populateResponse(File resource, OutputStream out) throws IOException {
-		String REQ_FOUND = "HTTP/1.0 200 OK\n";
-		String SERVER = "Server: HTTP server/0.1\n";
-		String DATE = "Date: " + new Date();
-		String CONTENT_TYPE = "Content-type: "
-            + URLConnection.guessContentTypeFromName(resource.getName());
-		String LENGTH = "Content-Length: " + (resource.length()) + "\n\n";
+    private int getHTTPCode(File file) {
+        if (file.exists() && !file.isDirectory()) {
+            return 200;
+        }
+        if (file.getName().equals(Server.movedFile)) {
+            return 301;
+        }
+        return 404;
+    }
 
-		String header = REQ_FOUND + SERVER + DATE + CONTENT_TYPE + LENGTH;
-		out.write(header.getBytes());
-		
-		Files.copy(Paths.get(resource.toString()), out);
-		out.flush();
+    private void populateResponse(File resource, OutputStream out, int code) throws IOException {
+        String RESPONSE = "HTTP/1.0 ";
+        String CONTENT_TYPE = "Content-type: ";
+        String LENGTH = "Content-Length: ";
+		String SERVER = "Server: CSE4344 HW1 Server\n";
+		String DATE = "Date: " + new Date();
+        String header;
+
+        switch (code) {
+            case 200:
+                RESPONSE += "200 OK\n";
+                CONTENT_TYPE += URLConnection.guessContentTypeFromName(resource.getName());
+                LENGTH += resource.length() + "\n\n";
+                header = RESPONSE + SERVER + DATE + CONTENT_TYPE + LENGTH;
+                out.write(header.getBytes());
+                Files.copy(Paths.get(resource.toString()), out);
+                break;
+            case 301:
+                RESPONSE += "301 Moved Permanently\n";
+                CONTENT_TYPE += "text/html";
+                LENGTH += "index.html".length() + "\n\nindex.html";
+                header = RESPONSE + SERVER + DATE + CONTENT_TYPE + LENGTH;
+                out.write(header.getBytes());
+                break;
+            case 404:
+                RESPONSE += "404 Not Found\n\n";
+                RESPONSE += "<html><head></head><body><h1>" +
+                    "File Not Found</h1></body></html>";
+                out.write(RESPONSE.getBytes());
+                break;
+            default:
+                break;
+        }
+        out.flush();
     }
 }
